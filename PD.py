@@ -1,32 +1,33 @@
 import nltk
 from nltk import word_tokenize, pos_tag
 import re
-from nltk.corpus import brown, ptb #http://www.nltk.org/howto/corpus.html
+from nltk.corpus import brown, ptb, treebank #http://www.nltk.org/howto/corpus.html
 
 
 #1. tokenization & part-of-speech tagging --> normally Penn Treebank
 f = open('obama.txt','rt', encoding='utf-8') #http://www.americanrhetoric.com/speeches/barackobama/barackobamawhitehousecorrespondentsdinner2016.htm
 text=f.read()
-tokenized= re.split(r'\W+', text)
+#tokenized= re.split(r'\W+', text)
 tokenized= word_tokenize(text)
-print(pos_tag(tokenized))
+taggedtext = pos_tag(tokenized)
+print('Tagged text: ',taggedtext)
 
-brown_tagged_sents = brown.tagged_sents(categories='news')
-unigram_tagger = nltk.UnigramTagger(brown_tagged_sents)
-print(unigram_tagger.tag(tokenized))
 
 #2. Total word count --> Multiplication: no words!
 
-#3. Adjustment Rules
-""" 'either...or' = 1 prop.
-'to'+verb = 1 prop
-'a,an,the' =/ prop
-models =/ prop, UNLESS negative (ending in "n't")
-COPULA + NP ==> copula = prop 
-COPULA + AdjP ==> copula(linking verb) =/ prop  (AdjP=prop!)
-Remove subject-auxiliary inversion"""
+#Deleting punctuation
+for word in taggedtext:
+	#regexp= re.compile(r'\,|\.|\;') PROBLEM!
+	if word[0] == '.':
+		taggedtext.remove(word)
+	if word[0] == ',':
+		taggedtext.remove(word)
 
-#4. Proposition count
+wordcount = len(taggedtext)
+print('wordcount: ',wordcount)
+
+
+#3. Proposition count
 """= verbs
 +adjectives
 +adverbs
@@ -36,4 +37,41 @@ Remove subject-auxiliary inversion"""
 +modals (ONLY if negative)
 -auxiliary verbs
 -linking verbs """
+
+for word in taggedtext: #word= ('word','tag')
+	regex= r'NNP'   #problem: fitting NN,NNP,NNS,... in 1 regex
+	if word[1] == regex:
+		taggedtext.remove(word)
+	elif word[1] == 'NN':
+		taggedtext.remove(word)
+	elif word[1] == 'NNS':
+		taggedtext.remove(word)
+	elif word[1] == 'NNPS':
+		taggedtext.remove(word)
+	elif word[1] == 'PRP':
+		taggedtext.remove(word)
+	elif word[1] == 'RP':
+		taggedtext.remove(word)
+	elif word[0] == 'a': #--> same problem for DT
+		taggedtext.remove(word)
+	elif word[0] == 'an':
+		taggedtext.remove(word)
+	elif word[0] == 'the':
+		taggedtext.remove(word)
+print('Propositions: ',taggedtext)
+propcount= len(taggedtext)
+print('Proposition Count: ', propcount)
+
+#4. Adjustment Rules
+""" 'either...or' = 1 prop.
+'to'+verb = 1 prop
+'a,an,the' =/ prop
+models =/ prop, UNLESS negative (ending in "n't")
+COPULA + NP ==> copula = prop 
+COPULA + AdjP ==> copula(linking verb) =/ prop  (AdjP=prop!)
+Remove subject-auxiliary inversion"""
+
+
 #5. Measuring PD (#prop./#words)
+propdensity= propcount/wordcount
+print('Propositional Idea Density: ',propdensity)
