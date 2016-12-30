@@ -42,6 +42,8 @@ print('wordcount: ',wordcount)
 -auxiliary verbs
 -linking verbs """
 
+
+
 for word in taggedtext: #word= ('word','tag')
 	regex= r'NNP'  #problem: fitting NN,NNP,NNS,... in 1 regex
 	if word[1] == regex:
@@ -56,14 +58,20 @@ for word in taggedtext: #word= ('word','tag')
 		taggedtext.remove(word)
 	elif word[1] == 'RP':
 		taggedtext.remove(word)
-	elif word[0] == 'a': #--> same problem for DT
+	elif (word[0] == 'a' or word[0] == 'A'): #--> same problem for DT
 		taggedtext.remove(word)
-	elif word[0] == 'an':
+	elif (word[0] is 'an' or word[0] is 'An'):
 		taggedtext.remove(word)
-	elif word[0] == 'the':
+	elif (word[0] == 'the' or word[0] == 'The'):
 		taggedtext.remove(word)
 	elif word[1] == 'EX':
 		taggedtext.remove(word)
+	else:
+		continue
+
+print('Propositions: ',taggedtext)
+propcount= len(taggedtext)
+print('Proposition Count: ', propcount)
 
 #PROBLEM: DOES NOT REMOVE EVERY 'NN', 'NNP', etc!!??
 
@@ -76,34 +84,28 @@ COPULA + NP ==> copula = prop
 COPULA + AdjP ==> copula(linking verb) =/ prop  (AdjP=prop!)
 Remove subject-auxiliary inversion"""
 
-"""for i in range(1,len(taggedtext)):
-	print(taggedtext[i], taggedtext[i-1])
-	"""
+	
 
-"""for i in range(1,(len(taggedtext))): #removing positive modals ---> PROBLEM: list index out of range
-	if taggedtext[i] is not ("n't", 'RB'): 
-		if taggedtext[i] is not ('not', 'RB'):
-			if taggedtext[i-1] == ('can', 'MD'):
-				taggedtext.remove(taggedtext[i-1])
-			elif taggedtext[i-1] == ('could', 'MD'):
-				taggedtext.remove(taggedtext[i-1])
-			elif taggedtext[i-1] == ('should', 'MD'):
-				taggedtext.remove(taggedtext[i-1])
-			elif taggedtext[i-1] == ('would', 'MD'):
-				taggedtext.remove(taggedtext[i-1])
-			elif taggedtext[i-1] == ('should', 'MD'):
-				taggedtext.remove(taggedtext[i-1])
-			elif taggedtext[i-1] == ('must', 'MD'):
-				taggedtext.remove(taggedtext[i-1])
-			elif taggedtext[i-1] == ('might', 'MD'):
-				taggedtext.remove(taggedtext[i-1])
-			else:
-				continue
+for i in range((propcount)-5): #removing positive modals ---> PROBLEM: REMOVES ALL MODALS! (Neg. included...)
+	if not (taggedtext[i] is ("n't", 'RB') or taggedtext[i] is ('not', 'RB')): 
+		if taggedtext[i-1] == ('can', 'MD'):
+			taggedtext.remove(taggedtext[i-1])
+		elif taggedtext[i-1] == ('could', 'MD'):
+			taggedtext.remove(taggedtext[i-1])
+		elif taggedtext[i-1] == ('should', 'MD'):
+			taggedtext.remove(taggedtext[i-1])
+		elif taggedtext[i-1] == ('would', 'MD'):
+			taggedtext.remove(taggedtext[i-1])
+		elif taggedtext[i-1] == ('will', 'MD'):
+			taggedtext.remove(taggedtext[i-1])
+		elif taggedtext[i-1] == ('must', 'MD'):
+			taggedtext.remove(taggedtext[i-1])
+		elif taggedtext[i-1] == ('might', 'MD'):
+			taggedtext.remove(taggedtext[i-1])
 		else:
-			break
+			continue
 	else:
-		continue"""
-
+		continue
 
 print('Propositions: ',taggedtext)
 propcount= len(taggedtext)
