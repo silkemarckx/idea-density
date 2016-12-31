@@ -12,17 +12,23 @@ f.close()
 
 tokenized= word_tokenize(text)
 taggedtext = pos_tag(tokenized)
-print('Tagged text: ',taggedtext)
+print('Tagged text: Original',taggedtext)
 
 
 #2. Total word count --> Multiplication: no words!
 
 #Deleting punctuation
+#Problem: Only removes all punctuation after a second identical loop. 
+#=> OVERALL PROBLEM: 2 items with same tag: No removal of second item!!
+Punctuation = (',','.','!',';','?',':')
 for word in taggedtext:
 	#regexp= re.compile(r'\,|\.|\;') PROBLEM!
-	if word[1] == '.':
+	if word[0] in Punctuation:
 		taggedtext.remove(word)
-	elif word[1] == ',':
+	else:
+		continue
+for word in taggedtext:
+	if word[0] in Punctuation:
 		taggedtext.remove(word)
 	else:
 		continue
@@ -31,7 +37,7 @@ wordcount = len(taggedtext)
 print('wordcount: ',wordcount)
 
 
-#3. Proposition count
+#3. Proposition count & Adjustment Rules
 """= verbs
 +adjectives
 +adverbs
@@ -42,40 +48,7 @@ print('wordcount: ',wordcount)
 -auxiliary verbs
 -linking verbs """
 
-
-
-for word in taggedtext: #word= ('word','tag')
-	regex= r'NNP'  #problem: fitting NN,NNP,NNS,... in 1 regex
-	if word[1] == regex:
-		taggedtext.remove(word)
-	elif word[1] == 'NN':
-		taggedtext.remove(word)
-	elif word[1] == 'NNS':
-		taggedtext.remove(word)
-	elif word[1] == 'NNPS':
-		taggedtext.remove(word)
-	elif word[1] == 'PRP':
-		taggedtext.remove(word)
-	elif word[1] == 'RP':
-		taggedtext.remove(word)
-	elif (word[0] == 'a' or word[0] == 'A'): #--> same problem for DT
-		taggedtext.remove(word)
-	elif (word[0] is 'an' or word[0] is 'An'):
-		taggedtext.remove(word)
-	elif (word[0] == 'the' or word[0] == 'The'):
-		taggedtext.remove(word)
-	elif word[1] == 'EX':
-		taggedtext.remove(word)
-	else:
-		continue
-
-print('Propositions: ',taggedtext)
-propcount= len(taggedtext)
-print('Proposition Count: ', propcount)
-
-#PROBLEM: DOES NOT REMOVE EVERY 'NN', 'NNP', etc!!??
-
-#4. Adjustment Rules
+#Adjustment rules:
 """ 'either...or' = 1 prop.
 'to'+verb = 1 prop
 'a,an,the' =/ prop
@@ -84,30 +57,70 @@ COPULA + NP ==> copula = prop
 COPULA + AdjP ==> copula(linking verb) =/ prop  (AdjP=prop!)
 Remove subject-auxiliary inversion"""
 
-	
-
-for i in range((propcount)-5): #removing positive modals ---> PROBLEM: REMOVES ALL MODALS! (Neg. included...)
+propcount= len(taggedtext)
+#Removing positive modals from prop count.
+#'Problem': Alle modals are removed. No problem: negative part carries the propositional count and is not removed. (otherwise: double count)
+Modals = (('can', 'MD'),('Can', 'MD'),('could', 'MD'),('Could', 'MD'),('will', 'MD'),('Will', 'MD'),('would', 'MD'),('Would', 'MD'),('should', 'MD'),('Should', 'MD'),('may', 'MD'),('May', 'MD'),('might', 'MD'),('Might', 'MD'),('must', 'MD'),('Must', 'MD'))
+for i in range((propcount)-5): 
 	if not (taggedtext[i] is ("n't", 'RB') or taggedtext[i] is ('not', 'RB')): 
-		if taggedtext[i-1] == ('can', 'MD'):
+		if taggedtext[i-1] in Modals:
 			taggedtext.remove(taggedtext[i-1])
-		elif taggedtext[i-1] == ('could', 'MD'):
-			taggedtext.remove(taggedtext[i-1])
-		elif taggedtext[i-1] == ('should', 'MD'):
-			taggedtext.remove(taggedtext[i-1])
-		elif taggedtext[i-1] == ('would', 'MD'):
-			taggedtext.remove(taggedtext[i-1])
-		elif taggedtext[i-1] == ('will', 'MD'):
-			taggedtext.remove(taggedtext[i-1])
-		elif taggedtext[i-1] == ('must', 'MD'):
-			taggedtext.remove(taggedtext[i-1])
-		elif taggedtext[i-1] == ('might', 'MD'):
-			taggedtext.remove(taggedtext[i-1])
-		else:
 			continue
 	else:
 		continue
 
-print('Propositions: ',taggedtext)
+
+print('Propositions -Modals: ',taggedtext)
+propcount= len(taggedtext)
+print('Proposition Count -modals: ', propcount)
+
+#Removing 'To' in 'to+verb'
+#Problem: Removes all 'to's!
+#Problem: Only removes all 'To'(+verb) after second identical loop. (=Overall problem)
+for i in range((propcount)-9):
+	if taggedtext[i-1] == ('to', 'TO'): 
+		for word in taggedtext[i]:
+			#print(word,word[-2:])
+			if word == 'VB':
+				taggedtext.remove(taggedtext[i-1])
+			else:
+				continue
+	else:
+		continue
+for i in range((propcount)-9): #removing 'to' bij 'to+verb' 
+	if taggedtext[i-1] == ('to', 'TO'): 
+		for word in taggedtext[i]:
+			if word == 'VB':
+				taggedtext.remove(taggedtext[i-1])
+			else:
+				continue
+	else:
+		continue
+
+print('Propositions (-to): ',taggedtext)
+propcount= len(taggedtext)
+print('Proposition Count -to: ', propcount)
+
+#Removing non-propositional tags + some determiners
+#Problem: see overall problem. 2 identical loops needed
+Removetags = ('NNP','NN','NNS','NNPS','PRP','RP','a','A','an','An','the','The','EX')
+for word in taggedtext: #word= ('word','tag')
+	if word[1] in Removetags:
+		taggedtext.remove(word)
+	elif word[0] in Removetags:
+		taggedtext.remove(word)
+	else:
+		continue
+for word in taggedtext: 
+	if word[1] in Removetags:
+		taggedtext.remove(word)
+	elif word[0] in Removetags:
+		taggedtext.remove(word)
+	else:
+		continue
+
+
+print('Propositions -tags etc. : ',taggedtext)
 propcount= len(taggedtext)
 print('Proposition Count: ', propcount)
 
