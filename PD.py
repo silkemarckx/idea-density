@@ -57,9 +57,9 @@ COPULA + NP ==> copula = prop
 COPULA + AdjP ==> copula(linking verb) =/ prop  (AdjP=prop!)
 Remove subject-auxiliary inversion"""
 
-propcount= len(taggedtext)
 #Removing positive modals from prop count.
 #'Problem': Alle modals are removed. No problem: negative part carries the propositional count and is not removed. (otherwise: double count)
+propcount= len(taggedtext)
 Modals = (('can', 'MD'),('Can', 'MD'),('could', 'MD'),('Could', 'MD'),('will', 'MD'),('Will', 'MD'),('would', 'MD'),('Would', 'MD'),('should', 'MD'),('Should', 'MD'),('may', 'MD'),('May', 'MD'),('might', 'MD'),('Might', 'MD'),('must', 'MD'),('Must', 'MD'))
 for i in range((propcount)-5): 
 	if not (taggedtext[i] is ("n't", 'RB') or taggedtext[i] is ('not', 'RB')): 
@@ -77,7 +77,8 @@ print('Proposition Count -modals: ', propcount)
 #Removing 'To' in 'to+verb'
 #Problem: Removes all 'to's!
 #Problem: Only removes all 'To'(+verb) after second identical loop. (=Overall problem)
-for i in range((propcount)-9):
+propcount= len(taggedtext)
+for i in range((propcount)-4):
 	if taggedtext[i-1] == ('to', 'TO'): 
 		for word in taggedtext[i]:
 			#print(word,word[-2:])
@@ -101,6 +102,50 @@ print('Propositions (-to): ',taggedtext)
 propcount= len(taggedtext)
 print('Proposition Count -to: ', propcount)
 
+#Removing auxiliary verbs
+propcount= len(taggedtext)
+AuxDO= (('do', 'VBP'),('Do', 'VBP'),('does', 'VBZ'),('Does', 'VBZ'),('did', 'VBD'),('Did', 'VBD'))
+FollowingAux = (("n't", 'RB'),('not', 'RB'),('been', 'VBN'))
+for i in range((propcount)-4): 
+	if taggedtext[i] in FollowingAux: 
+		if taggedtext[i-1] in AuxDO:
+			#print(taggedtext[i-1],taggedtext[i])
+			taggedtext.remove(taggedtext[i-1])
+	else:
+		continue
+propcount= len(taggedtext)
+print('Proposition Count -DO: ', propcount)
+
+
+AuxHAVE= (('have', 'VBP'),('Have', 'VBP'),('has', 'VBZ'),('Has', 'VBZ'),("'ve", 'VBP'),('had', 'VBD'),('Had', 'VBD'))
+for i in range((propcount)-4): 
+	if taggedtext[i] in FollowingAux: 
+		if taggedtext[i-1] in AuxHAVE:
+			#print(taggedtext[i-1],taggedtext[i])
+			taggedtext.remove(taggedtext[i-1])
+	#elif 
+	else:
+		continue
+propcount= len(taggedtext)
+print('Proposition Count -HAVE: ', propcount)
+
+
+AuxBE= (('am', 'VBP'),('Am', 'VBP'),("'m", 'VBP'),('are', 'VBP'),('Are', 'VBP'),("'re", 'VBP'),('is','VBZ'),('Is','VBZ'),("'s",'VBZ'),('was','VBD'),('Was','VBD'),('were','VBD'),('Were','VBD'),('been','VBN'),('Been','VBN'),('being','VBG'),('Being','VBG'))
+for i in range((propcount)-4): 
+	if taggedtext[i-1] in AuxBE: 
+		for word in taggedtext[i]:
+			if word == 'VBG':
+				#print(taggedtext[i-1],taggedtext[i])
+				taggedtext.remove(taggedtext[i-1])
+			else:
+				continue
+	else:
+		continue
+
+print('Propositions -aux: ',taggedtext)
+propcount= len(taggedtext)
+print('Proposition Count -AUX: ', propcount)
+
 #Removing non-propositional tags + some determiners
 #Problem: see overall problem. 2 identical loops needed
 Removetags = ('NNP','NN','NNS','NNPS','PRP','RP','a','A','an','An','the','The','EX')
@@ -118,7 +163,6 @@ for word in taggedtext:
 		taggedtext.remove(word)
 	else:
 		continue
-
 
 print('Propositions -tags etc. : ',taggedtext)
 propcount= len(taggedtext)
