@@ -118,12 +118,25 @@ print('Proposition Count -DO: ', propcount)
 
 
 AuxHAVE= (('have', 'VBP'),('Have', 'VBP'),('has', 'VBZ'),('Has', 'VBZ'),("'ve", 'VBP'),('had', 'VBD'),('Had', 'VBD'))
-for i in range((propcount)-4): 
+FolHAVE=('VB','VBN')
+for i in range((propcount)-6): 
 	if taggedtext[i] in FollowingAux: 
 		if taggedtext[i-1] in AuxHAVE:
-			#print(taggedtext[i-1],taggedtext[i])
+			print(taggedtext[i-1],taggedtext[i])
 			taggedtext.remove(taggedtext[i-1])
-	#elif 
+	elif taggedtext[i-1] in AuxHAVE: 
+		for word in taggedtext[i]:
+			if word in FolHAVE:
+				print(taggedtext[i-1],taggedtext[i])
+				taggedtext.remove(taggedtext[i-1])
+			else:
+				continue
+		for word in taggedtext[i+1]:
+			if word in FolHAVE:
+				print(taggedtext[i-1],taggedtext[i+1])
+				taggedtext.remove(taggedtext[i-1])
+			else:
+				continue
 	else:
 		continue
 propcount= len(taggedtext)
@@ -131,11 +144,24 @@ print('Proposition Count -HAVE: ', propcount)
 
 
 AuxBE= (('am', 'VBP'),('Am', 'VBP'),("'m", 'VBP'),('are', 'VBP'),('Are', 'VBP'),("'re", 'VBP'),('is','VBZ'),('Is','VBZ'),("'s",'VBZ'),('was','VBD'),('Was','VBD'),('were','VBD'),('Were','VBD'),('been','VBN'),('Been','VBN'),('being','VBG'),('Being','VBG'))
+FolBE= ('VBG','VBN')
 for i in range((propcount)-4): 
 	if taggedtext[i-1] in AuxBE: 
 		for word in taggedtext[i]:
-			if word == 'VBG':
-				#print(taggedtext[i-1],taggedtext[i])
+			if word in FolBE:
+				print(taggedtext[i-1],taggedtext[i])
+				taggedtext.remove(taggedtext[i-1])
+			else:
+				continue
+		for word in taggedtext[i+1]:
+			if word in FolBE:
+				print(taggedtext[i-1],taggedtext[i+1])
+				taggedtext.remove(taggedtext[i-1])
+			else:
+				continue
+		for word in taggedtext[i+2]:
+			if word in FolBE:
+				#print(taggedtext[i-1],taggedtext[i+2])
 				taggedtext.remove(taggedtext[i-1])
 			else:
 				continue
