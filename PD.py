@@ -92,11 +92,12 @@ def IdeaDensity(inputtext):
 				else:
 					for word in taggedtext[i]:
 						if word == 'VB':
+							taggedtext[i-1]="I need to rename this, in order to avoid removing all 'need'"
 							#print('LAST',taggedtext[i-1],taggedtext[i],len(taggedtext))
 							taggedtext.remove(taggedtext[i-1])
 						else:
 							continue
-					for word in taggedtext:
+					for word in taggedtext: #problem: NOT CASE-SENSITIVE??????????!!!!!!!!!!
 						if word == ('Need', 'VB'): #only modal need can initiate a sentence
 							#print('Beginning', word)
 							taggedtext.remove(word)
@@ -111,7 +112,7 @@ def IdeaDensity(inputtext):
 			if taggedtext[i] != ('to', 'TO'): 
 				for word in taggedtext[i+1]: #problem: '... need her. Do' --> need=removed!
 					if word == 'VB':
-						#print('LAST',taggedtext[i+1],len(taggedtext))
+						print('LAST',taggedtext[i+1],len(taggedtext))
 						taggedtext.remove(taggedtext[i-1])
 					else:
 						continue
@@ -120,13 +121,14 @@ def IdeaDensity(inputtext):
 		else:
 			continue
 
-	#removing aux 'used/able/going to', not a MODAL! (but must be removed before 'to' is removed)
-	beXto = (('used', 'VBD'),('going', 'VBG'),('able', 'JJ'))
-	for i in range(1,(len(taggedtext))-2): 
-		if taggedtext[i-1] in beXto: 
+	#removing aux 'used/able/going/need to', not a MODAL! (but must be removed before 'to' is removed)
+	Xto = (('used', 'VBD'),('going', 'VBG'),('able', 'JJ'),('need', 'VB'),('need', 'VBP'),('needs', 'VBZ'))
+	for i in range(1,(len(taggedtext))-7): 
+		if taggedtext[i-1] in Xto: 
 			if taggedtext[i] == ('to', 'TO'):
 				for word in taggedtext[i+1]:
 					if word == 'VB':
+						word ="I need to rename this, in order to avoid removing all TO's"
 						taggedtext.remove(taggedtext[i-1])
 			else:
 				continue			
@@ -140,7 +142,7 @@ def IdeaDensity(inputtext):
 
 	#Removing 'To' in 'to+verb'
 	#Problem: Only removes all 'To'(+verb) after second identical loop. (=Overall problem)
-	for i in range(1,(len(taggedtext))-10):
+	for i in range(1,(len(taggedtext))-12):
 		if taggedtext[i-1] == ('to', 'TO'): 
 			for word in taggedtext[i]:
 				if word == 'VB':
@@ -151,7 +153,6 @@ def IdeaDensity(inputtext):
 					continue
 		else:
 			continue
-	print(taggedtext)
 	for i in range(1,(len(taggedtext))-3): #removing 'to' bij 'to+verb' 
 		if taggedtext[i-1] == ('to', 'TO'): 
 			for word in taggedtext[i]:
@@ -170,10 +171,9 @@ def IdeaDensity(inputtext):
 
 	#Removing auxiliary verbs
 	#Problem: sentences like 'Why did you tell her that...' --> 'did' is NOT removed
-	propcount= len(taggedtext)
 	AuxDO= (('do', 'VBP'),('Do', 'VBP'),('does', 'VBZ'),('Does', 'VBZ'),('did', 'VBD'),('Did', 'VBD'))
 	FollowingAux = (("n't", 'RB'),('not', 'RB'),('been', 'VBN'))
-	for i in range(1,(propcount)-1): 
+	for i in range(1,(len(taggedtext))-2): 
 		if taggedtext[i] in FollowingAux: 
 			if taggedtext[i-1] in AuxDO:
 				#print(taggedtext[i-1],taggedtext[i])
@@ -191,7 +191,7 @@ def IdeaDensity(inputtext):
 	AuxHAVE= (('have', 'VBP'),('Have', 'VBP'),('has', 'VBZ'),('Has', 'VBZ'),("'ve", 'VBP'),
 		('had', 'VBD'),('Had', 'VBD'),('have', 'VB'))
 	FolHAVE=('VB','VBN')
-	for i in range(1,(len(taggedtext))-5): 
+	for i in range(1,(len(taggedtext))-6): 
 		if taggedtext[i] in FollowingAux: 
 			if taggedtext[i-1] in AuxHAVE:
 				#print(taggedtext[i-1],taggedtext[i])
@@ -255,8 +255,30 @@ def IdeaDensity(inputtext):
 	propcount= len(taggedtext)
 	print('Proposition Count -AUX: ', propcount)
 
-	#Removing copula, followed by AdjP
+	#Removing prime copula 'to be', followed by AdjP
 
+
+	#Removing secondary copula, followed by AdjP
+	CopulaInchoative= (('become','VB'),('become','VBP'),('becomes','VBZ'),('became','VBD'),('become','VBN'),('becoming','VBG'),
+		('come','VB'),('come','VBP'),('comes','VBZ'),('came','VBD'),('come','VBN'),('coming','VBG'),
+		('fall','VB'),('fall','VBP'),('falls','VBZ'),('fell','VBD'),('fallen','VBN'),('falling','VBG'),
+		('get','VB'),('get','VBP'),('gets','VBZ'),('got','VBD'),('got','VBN'),('gotten','VBN'),('getting','VBG'),
+		('go','VB'),('go','VBP'),('goes','VBZ'),('went','VBD'),('gone','VBN'),('going','VBG'),
+		('grow','VB'),('grow','VBP'),('grows','VBZ'),('grew','VBD'),('grown','VBN'),('growing','VBG'),
+		('run','VB'),('run','VBP'),('runs','VBZ'),('ran','VBD'),('ran','VBN'),('running','VBG'),
+		('turn','VB'),('turn','VBP'),('turn','VBZ'),('turned','VBD'),('turned','VBN'),('turning','VBG'),
+		('wear','VB'),('wear','VBP'),('wears','VBZ'),('wore','VBD'),('worn','VBN'),('wearing','VBG'))
+	CopulaSenses= (('feel','VB'),('feel','VBP'),('feels','VBZ'),('felt','VBD'),('felt','VBN'),('feeling','VBG'),
+		('taste','VB'),('taste','VBP'),('tastes','VBZ'),('tasted','VBD'),('tasted','VBN'),('tasting','VBG'),
+		('smell','VB'),('smell','VBP'),('smells','VBZ'),('smelled','VBD'),('smelt','VBD'),('smelled','VBN'),('smelt','VBN'),('smelling','VBG'),
+		('sound','VB'),('sound','VBP'),('sounds','VBZ'),('sounded','VBD'),('sounded','VBN'),('sounding','VBG'),
+		('look','VB'),('look','VBP'),('looks','VBZ'),('looked','VBD'),('looked','VBN'),('looking','VBG'))
+	CopulaOthers= (('appear','VB'),('appear','VBP'),('appears','VBZ'),('appeared','VBD'),('appeared','VBN'),('appearing','VBG'),
+		('prove','VB'),('prove','VBP'),('proves','VBZ'),('proved','VBD'),('proven','VBN'),('proved', 'VBN'),('proving','VBG'),
+		('remain','VB'),('remain','VBP'),('remains','VBZ'),('remained','VBD'),('remained','VBN'),('remaining','VBG'),
+		('seem','VB'),('seem','VBP'),('seems','VBZ'),('seemed','VBD'),('seemed','VBN'),('seeming','VBG'),
+		('sound','VB'),('sound','VBP'),('sounds','VBZ'),('sounded','VBD'),('sounded','VBN'),('sounding','VBG'),
+		('look','VB'),('look','VBP'),('looks','VBZ'),('looked','VBD'),('looked','VBN'),('looking','VBG'))
 
 	#Removing non-propositional tags + some determiners
 	#Problem: see overall problem. 3 identical loops needed!!
