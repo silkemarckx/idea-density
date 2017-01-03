@@ -219,7 +219,7 @@ def IdeaDensity(inputtext):
 		('is','VBZ'),('Is','VBZ'),("'s",'VBZ'),('was','VBD'),('Was','VBD'),('were','VBD'),
 		('Were','VBD'),('been','VBN'),('Been','VBN'),('being','VBG'),('Being','VBG'),('be', 'VB'))
 	FolBE= ('VBG','VBN','VB') #VB --> Modal 'be to +verb', 'to' is already removed, so: be+ verb (& verb = VB)
-	for i in range(1,(len(taggedtext))-8): 
+	for i in range(1,(len(taggedtext))-9): 
 		if taggedtext[i-1] in AuxBE:
 			for word in taggedtext[i]:
 				if word in FolBE:
@@ -256,6 +256,35 @@ def IdeaDensity(inputtext):
 	print('Proposition Count -AUX: ', propcount)
 
 	#Removing prime copula 'to be', followed by AdjP
+	PrimeCopula = (('be','VB'),('am','VBP'),("'m",'VBP'),('are','VBP'),("'re",'VBP'),('is','VBZ'),("'s",'VBZ'),
+		('was','VBD'),('were','VBD'),('been','VBN'),('being','VBG'))
+	AdjP= ('JJ','JJR','JJS')
+	for i in range(1,(len(taggedtext))-1): 
+		if taggedtext[i-1] in PrimeCopula:
+			for word in taggedtext[i]:
+				if word in AdjP:
+					print('Copula BE+ JJ.',taggedtext[i-1],taggedtext[i])
+					taggedtext[i-1]="to be removed"
+					taggedtext.remove(taggedtext[i-1])
+				else:
+					continue
+		else:
+			continue
+	for i in range(1,(len(taggedtext))-1): 
+		if taggedtext[i-1] in PrimeCopula:
+			for word in taggedtext[i]:
+				if word == 'RB':
+					for word in taggedtext[i+1]:
+						if word in AdjP:
+							print('Copula BE+ RB+JJ.',taggedtext[i-1],taggedtext[i],taggedtext[i+1])
+							taggedtext[i-1]="To be removed"
+							taggedtext.remove(taggedtext[i-1])
+						else:
+							continue
+				else:
+					continue
+		else:
+			continue		
 
 
 	#Removing secondary copula, followed by AdjP
@@ -279,6 +308,28 @@ def IdeaDensity(inputtext):
 		('seem','VB'),('seem','VBP'),('seems','VBZ'),('seemed','VBD'),('seemed','VBN'),('seeming','VBG'),
 		('sound','VB'),('sound','VBP'),('sounds','VBZ'),('sounded','VBD'),('sounded','VBN'),('sounding','VBG'),
 		('look','VB'),('look','VBP'),('looks','VBZ'),('looked','VBD'),('looked','VBN'),('looking','VBG'))
+	for i in range(1,(len(taggedtext))-6): 
+		if (taggedtext[i-1] in CopulaInchoative or taggedtext[i-1] in CopulaSenses or taggedtext[i-1] in CopulaOthers):
+			for word in taggedtext[i]:
+				if word in AdjP:
+					print('Copula JJ.',taggedtext[i-1],taggedtext[i])
+					taggedtext.remove(taggedtext[i-1])
+	for i in range(1,(len(taggedtext))-2): 
+		if (taggedtext[i-1] in CopulaInchoative or taggedtext[i-1] in CopulaSenses or taggedtext[i-1] in CopulaOthers):
+			for word in taggedtext[i]:
+				if word == 'RB':
+					for word in taggedtext[i+1]:
+						if word in AdjP:
+							print('Copula RB+JJ.',taggedtext[i-1],taggedtext[i],taggedtext[i+1])
+							taggedtext.remove(taggedtext[i-1])
+				else:
+					continue
+		else:
+			continue
+
+	print('Propositions -COP: ',taggedtext)
+	propcount= len(taggedtext)
+	print('Proposition Count -COP: ', propcount)
 
 	#Removing non-propositional tags + some determiners
 	#Problem: see overall problem. 3 identical loops needed!!
