@@ -174,6 +174,7 @@ def IdeaDensity(inputtext, rnge=0):
 		if taggedtext[i-1] in AuxBE:
 			for word in taggedtext[i]:
 				if word in FolBE:
+					taggedtext[i-1]='remove'
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
@@ -396,5 +397,7 @@ def IdeaDensity(inputtext, rnge=0):
 		'\n\t>> "a,an,the"-determiners: \t\t', DTcount,'\t',round(DTcount/wordcount,5),
 		'\n\nTagged propositions: 		\t\t', taggedtext)
 
+	#Next step: printing to new file
+	#Next next step: pickle
 
 IdeaDensity('secondtext.txt')
