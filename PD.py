@@ -1,9 +1,8 @@
 import nltk
 from nltk import word_tokenize, pos_tag
-import re
 
 def IdeaDensity(inputtext, rnge=0):
-	#1. tokenization & part-of-speech tagging --> normally Penn Treebank
+	#1. tokenization & part-of-speech tagging
 	f = open(inputtext,'rt', encoding='utf-8') #http://www.americanrhetoric.com/speeches/barackobama/barackobamawhitehousecorrespondentsdinner2016.htm
 	text=f.read()
 	f.close()
@@ -14,7 +13,7 @@ def IdeaDensity(inputtext, rnge=0):
 	#print('Tagged text: Original',taggedtext)
 
 
-	#2. Total word count --> Multiplication: no words!
+	#2. Total word count
 	#Deleting punctuation
 	#Problem: Only removes all punctuation after a second identical loop. 
 	#=> OVERALL PROBLEM: 2 items with same tag: No removal of second item!!
@@ -71,10 +70,10 @@ def IdeaDensity(inputtext, rnge=0):
 			taggedtext.remove(word)
 		else:
 			continue
+	#Removing modal 'got'
 	for i in range(1,(len(taggedtext)-(1+rnge))):
 		if taggedtext[i] == ('to', 'TO'): 
 			if taggedtext[i-1] == ('got', 'VBN'):
-				#print(taggedtext[i-1],taggedtext[i])
 				taggedtext.remove(taggedtext[i-1])
 			else:
 				continue
@@ -87,13 +86,11 @@ def IdeaDensity(inputtext, rnge=0):
 		if taggedtext[i-1] in ModalNeed: 
 			if taggedtext[i] != ('to', 'TO'): #Following the original grammar rules: need + to = main verb, instead of semi-modal
 				if taggedtext[i] in Negative:
-					#print('NOT',taggedtext[i-2],taggedtext[i],len(taggedtext))
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					for word in taggedtext[i]:
 						if word == 'VB':
 							taggedtext[i-1]="I need to rename this, in order to avoid removing all 'need'"
-							#print('LAST',taggedtext[i-1],taggedtext[i],len(taggedtext))
 							taggedtext.remove(taggedtext[i-1])
 						else:
 							continue
@@ -112,7 +109,6 @@ def IdeaDensity(inputtext, rnge=0):
 			if taggedtext[i] != ('to', 'TO'): 
 				for word in taggedtext[i+1]: #problem: '... need her. Do' --> need=removed!
 					if word == 'VB':
-						#print('LAST',taggedtext[i+1],len(taggedtext))
 						taggedtext.remove(taggedtext[i-1])
 					else:
 						continue
@@ -120,8 +116,6 @@ def IdeaDensity(inputtext, rnge=0):
 				continue
 		else:
 			continue
-
-	#print('Propositions -Modals: ',taggedtext)
 	modalcount = propcount-len(taggedtext)
 	#print('#removed modals: ', modalcount)
 	propcount= len(taggedtext)
@@ -134,13 +128,11 @@ def IdeaDensity(inputtext, rnge=0):
 	for i in range(5,(len(taggedtext)-(2+(100*rnge)))): 
 		if taggedtext[i] in FollowingAux: 
 			if taggedtext[i-1] in AuxDO:
-				#print(taggedtext[i-1],taggedtext[i])
 				taggedtext.remove(taggedtext[i-1])
 		else:
 			continue
 	for word in taggedtext: #removing do-verbs that initate a sentence.
 		if (word == ('Do','VBP') or word == ('Does', 'VBZ')):
-			#print(word)
 			taggedtext.remove(word)
 	DOcount = propcount-len(taggedtext)
 	#print('#removed Do-verbs: ', DOcount)
@@ -153,18 +145,15 @@ def IdeaDensity(inputtext, rnge=0):
 	for i in range(1,(len(taggedtext)-(6+10*rnge))): 
 		if taggedtext[i] in FollowingAux: 
 			if taggedtext[i-1] in AuxHAVE:
-				#print(taggedtext[i-1],taggedtext[i])
 				taggedtext.remove(taggedtext[i-1])
 		elif taggedtext[i-1] in AuxHAVE: 
 			for word in taggedtext[i]:
 				if word in FolHAVE:
-					#print(taggedtext[i-1],taggedtext[i])
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
 			for word in taggedtext[i+1]:
 				if word in FolHAVE:
-					#print(taggedtext[i-1],taggedtext[i+1])
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
@@ -183,20 +172,17 @@ def IdeaDensity(inputtext, rnge=0):
 		if taggedtext[i-1] in AuxBE:
 			for word in taggedtext[i]:
 				if word in FolBE:
-					#print('FIRST',taggedtext[i-1],taggedtext[i])
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
 			for word in taggedtext[i+1]:
 				if word in FolBE:
-					#print('MIDDLE',taggedtext[i-1],taggedtext[i+1])
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
 		if taggedtext[i-1] in AuxBE: #without repetition of if-clause: removal of wrong word!!
 			for word in taggedtext[i+2]:
 				if word in FolBE:
-					#print('LAST',taggedtext[i-1],taggedtext[i+2])
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
@@ -206,12 +192,12 @@ def IdeaDensity(inputtext, rnge=0):
 	#print('#removed BE-verbs: ', BEcount)
 	propcount= len(taggedtext)
 
+
 	AuxGET = (('get', 'VBP'), ('gets', 'VBZ'),('got', 'VBD'))
 	for i in range(1,(len(taggedtext)-(5+rnge))): 
 		if taggedtext[i-1] in AuxGET:
 			for word in taggedtext[i]:
 				if word == 'VBN':
-					#print('FIRST',taggedtext[i-1],taggedtext[i])
 					taggedtext.remove(taggedtext[i-1])
 
 	#removing aux 'used/able/going/need to'
@@ -240,7 +226,6 @@ def IdeaDensity(inputtext, rnge=0):
 		if taggedtext[i-1] == ('to', 'TO'): 
 			for word in taggedtext[i]:
 				if word in FolTO:
-					#print(taggedtext[i])
 					taggedtext[i-1]="I need to rename this, in order to avoid removing al TO's"
 					taggedtext.remove(taggedtext[i-1])
 				else:
@@ -251,14 +236,11 @@ def IdeaDensity(inputtext, rnge=0):
 		if taggedtext[i-1] == ('to', 'TO'): 
 			for word in taggedtext[i]:
 				if word in FolTO:
-					#print(taggedtext[i-1],taggedtext[i])
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
 		else:
-			#print(taggedtext[i],len(taggedtext))
 			continue
-
 	TOcount = propcount-len(taggedtext)
 	#print("#removed TO's: ", TOcount)
 	propcount= len(taggedtext)
@@ -272,7 +254,6 @@ def IdeaDensity(inputtext, rnge=0):
 		if taggedtext[i-1] in PrimeCopula:
 			for word in taggedtext[i]:
 				if word in AdjP:
-					#print('Copula BE+ JJ.',taggedtext[i-1],taggedtext[i])
 					taggedtext[i-1]="to be removed"
 					taggedtext.remove(taggedtext[i-1])
 				else:
@@ -285,7 +266,6 @@ def IdeaDensity(inputtext, rnge=0):
 				if word == 'RB':
 					for word in taggedtext[i+1]:
 						if word in AdjP:
-							#print('Copula BE+ RB+JJ.',taggedtext[i-1],taggedtext[i],taggedtext[i+1])
 							taggedtext[i-1]="To be removed"
 							taggedtext.remove(taggedtext[i-1])
 						else:
@@ -323,7 +303,6 @@ def IdeaDensity(inputtext, rnge=0):
 		if (taggedtext[i-1] in CopulaInchoative or taggedtext[i-1] in CopulaSenses or taggedtext[i-1] in CopulaOthers):
 			for word in taggedtext[i]:
 				if word in AdjP:
-					#print('Copula JJ.',taggedtext[i-1],taggedtext[i])
 					taggedtext.remove(taggedtext[i-1])
 	for i in range(1,(len(taggedtext)-(2+rnge))): 
 		if (taggedtext[i-1] in CopulaInchoative or taggedtext[i-1] in CopulaSenses or taggedtext[i-1] in CopulaOthers):
@@ -331,7 +310,6 @@ def IdeaDensity(inputtext, rnge=0):
 				if word == 'RB':
 					for word in taggedtext[i+1]:
 						if word in AdjP:
-							#print('Copula RB+JJ.',taggedtext[i-1],taggedtext[i],taggedtext[i+1])
 							taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
