@@ -9,7 +9,7 @@ def IdeaDensity(inputtext, rnge=0):
 
 	tokenized= word_tokenize(text)
 	taggedtext = pos_tag(tokenized)
-	Originaltext= taggedtext
+	Originaltext = pos_tag(tokenized)
 	#print('Tagged text: Original',taggedtext)
 
 
@@ -17,14 +17,14 @@ def IdeaDensity(inputtext, rnge=0):
 	#Deleting punctuation
 	#Problem: Only removes all punctuation after a second identical loop. 
 	#=> OVERALL PROBLEM: 2 items with same tag: No removal of second item!!
-	Punctuation = (',','.','!',';','?',':',"'","''",'``')
+	Punctuation = (',','.','!',';','?',':',"'","''",'``','(',')')
 	for word in taggedtext:
-		if word[0] in Punctuation:
+		if word[1] in Punctuation:
 			taggedtext.remove(word)
 		else:
 			continue
 	for word in taggedtext:
-		if word[0] in Punctuation:
+		if word[1] in Punctuation:
 			taggedtext.remove(word)
 		else:
 			continue
@@ -32,7 +32,9 @@ def IdeaDensity(inputtext, rnge=0):
 	wordcount = len(taggedtext)
 	#print('wordcount: ',wordcount)
 
-	if wordcount > 2000:
+	if wordcount > 10000:
+		rnge +=184
+	elif wordcount > 2000:
 		rnge +=40
 	elif wordcount >1000:
 		rnge+=4
@@ -221,13 +223,17 @@ def IdeaDensity(inputtext, rnge=0):
 	
 	#Removing 'To' in 'to+verb'
 	#Problem: Only removes all 'To'(+verb) after second identical loop. (=Overall problem)
-	FolTO= ('VB','VBG','VBN') #When aux have&be are removed-->> (VBG: have to be ..ing--> to ...ing) (VBN: ought to have ..ed --> to ..ed)
+	FolTO = ('VB','VBG','VBN') #When aux have&be are removed-->> (VBG: have to be ..ing--> to ...ing) (VBN: ought to have ..ed --> to ..ed)
+	NOTFOLTO = ('DT','NNP','NN','NNS','NNPS','PRP','PRP$') 
 	for i in range(1,(len(taggedtext)-(12+(2*rnge)))):
 		if taggedtext[i-1] == ('to', 'TO'): 
 			for word in taggedtext[i]:
-				if word in FolTO:
-					taggedtext[i-1]="I need to rename this, in order to avoid removing al TO's"
-					taggedtext.remove(taggedtext[i-1])
+				if word not in NOTFOLTO: #extra security
+					if word in FolTO:
+						taggedtext[i-1]="I need to rename this, in order to avoid removing al TO's"
+						taggedtext.remove(taggedtext[i-1])
+					else:
+						continue
 				else:
 					continue
 		else:
@@ -235,8 +241,12 @@ def IdeaDensity(inputtext, rnge=0):
 	for i in range(1,(len(taggedtext)-(3+rnge))): #removing 'to' bij 'to+verb' 
 		if taggedtext[i-1] == ('to', 'TO'): 
 			for word in taggedtext[i]:
-				if word in FolTO:
-					taggedtext.remove(taggedtext[i-1])
+				if word not in NOTFOLTO:
+					if word in FolTO:
+						taggedtext[i-1]="I need to rename this, in order to avoid removing al TO's"
+						taggedtext.remove(taggedtext[i-1])
+					else:
+						continue
 				else:
 					continue
 		else:
@@ -384,7 +394,7 @@ def IdeaDensity(inputtext, rnge=0):
 		'\n\t>> Other copulas: 			\t', COPcount,'\t\t',round(COPcount/wordcount,5),
 		'\n\t>> Non-propositional tags:	\t', TAGcount,'\t',round(TAGcount/wordcount,5),
 		'\n\t>> "a,an,the"-determiners: \t\t', DTcount,'\t',round(DTcount/wordcount,5),
-		'\nTagged propositions: 		\t\t', taggedtext)
+		'\n\nTagged propositions: 		\t\t', taggedtext)
 
 
 IdeaDensity('secondtext.txt')
