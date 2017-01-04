@@ -1,0 +1,147 @@
+﻿There is currently a large body of work, particularly in health and cognitive ageing exploring the
+effects of ageing on both healthy ageing individuals and individuals with diseases frequently
+associated with ageing such as dementias and stroke. One of the key areas of investigation has
+related to documenting and describing age-related cognitive decline and, more recently,
+documenting the benefits associated with healthy ageing, such as how knowledge and experience
+can, to some extent, offset or ameliorate age-related decline (Park, 2012). This can be evidenced
+particularly when people are functioning in familiar, everyday environments and doing routine
+Correspondence: Dr. Elizabeth Spencer, School of Humanities and Social Science, University of Newcastle, Callaghan, NSW 2308,
+Australia. Tel: (61) 4921 5161. Fax: (61) 4921 7388. E-mail: Elizabeth.Spencer@newcastle.edu.au
+activities (Park & Hall Gutchess, 2012). One way in which these activities are mediated is through
+the use of language. With regard to language in particular, research has explored if and how
+language declines with age and whether language ability has been related to aspects of cognitive
+ability and neurological health (Kemper, Greiner, Prenovost, & Mitzner, 2001). Christensen,
+Anstey, Leach, and MacKinnon (2007) discussed how the oral and written language of older adults
+may act as an early indicator of cognitive health as well as a potential indicator of cognitive or
+brain reserve. Cognitive reserve has been associated as a protective factor in terms of cognitive
+health and has also been linked with lower risk of diseases such as dementia (Riley, Snowdon,
+Desrosiers, & Markesbery, 2005); however, the exact mechanisms and structure of the reserve is
+not clear (Christensen et al., 2007). Linguistic function, in particular, has been explored and
+proposed as a way of detecting subtle and subclinical changes in cognition as reflected through
+language which may, in turn, be an indicator of cognitive decline. Researchers from both literary
+and ageing fields have demonstrated how linguistic measures can provide indices of linguistic
+change over time. For example, the linguistic abilities as evidenced in published works by Iris
+Murdoch (who had a confirmed diagnosis of Alzheimer dementia post mortem) and of Agatha
+Christie (who had suspected but unconfirmed diagnosis of Alzheimer’s dementia [AD])
+demonstrated declines in measures of linguistic complexity (Garrard, 2009; Garrard, Maloney,
+Hodges, & Patterson, 2005; Lancashire, 2010; Le, Lancashire, Hirst, & Jokel, 2011). Among
+studies into ageing which incorporated linguistic measures and related these to cognitive abilities,
+one of the hallmark studies was the Nun Study conducted by Snowdon et al. (Riley et al., 2005;
+Snowdon, 2001). As part of the Nun Study, Kemper et al. compared the early adult and later life
+linguistic abilities of a large group of nuns by analysing autobiographical letters in early adult life
+upon entry to the convent (Kemper, Greiner, et al., 2001; Kemper, Thomson, & Marquis, 2001;
+Mitzner & Kemper, 2003). The written language was analysed for both grammatical complexity
+and the relative number of ideas or propositions contained in the texts (as measured by
+Propositional Idea Density (PD) – see below for discussion). Overall, their findings indicated that
+measures of informativeness, as measured by PD, were a sensitive predictor of language decline
+with age and also a sensitive predictor of AD (as later confirmed by autopsy in the Nun Study
+participants). Needless to say, the relationship between language, cognition and cognitive health is
+complex and there is not a linear relationship between linguistic ability and cognition. Other
+cognitive functions, such as working memory, have been demonstrated to be part of the complex
+picture (Kemper, 2012). This present research, however, focuses on the use of one linguistic
+measure, PD, to investigate levels of informativeness in written language samples from a group of
+Australian men.
+Measuring language decline of informativeness with age using propositional density
+Until recently, there has been a relative paucity of information about older adults’ discourse skills
+(Kemper & Kemtes, 2012). The analysis of discourse skills is of interest as it provides insight into
+how effectively and efficiently people both convey and process information. There are a number of
+ways of analysing discourse for conveying information, particularly disordered discourse
+(Armstrong, Ferguson, & Simmons-Mackie, 2013). PD is one method that has been used to
+quantify the amount of information that a speaker or writer conveys. The PD score is derived from
+a ratio of the number of words identified as indicators of underlying propositions relative to the
+total number of words in the sample. As discussed above, it is a measure that has been shown to be
+sensitive to and perhaps an early indicator of cognitive decline (Kemper, Greiner, et al., 2001;
+Mitzner & Kemper, 2003; Snowdon, 2001) and is thought to be associated with processing
+efficiency and cognitive reserve (Kemper, Thomson, et al., 2001). High levels of PD have been
+86 E. Spencer et al.
+associated with maintaining cognitive health in late old age and low PD has been associated with
+the development of AD (Riley et al., 2005). As part of the Nun Study, written autobiographical
+texts prepared by the novices at average age 22 years upon entry to the convent were analysed and
+compared to the participants’ later life language samples (mean age 83.1 years), and cognitive
+abilities and Alzheimer pathology as determined at autopsy. Similar results were replicated in a
+later study by Engelman, Agree, Meoni, and Klag (2010) accessing the John Hopkins Precursor
+study entry essays and follow-up with participants from the age cohort 1917–1936 (Engelman
+et al., 2010). Recently, Chand, Baynes, Bonnici, and Farais (2012) have found that PD is a
+measure that is able to differentiate between the discourse of people with AD and healthy ageing
+adults (Chand et al., 2012).
+Much of the research into PD has been with people with AD and has involved healthy ageing
+matched control participants. Scores for PD have been reported but these results are mixed and
+difficult to interpret. For example, the range of scores provided for healthy ageing individuals is
+large and, for those with AD, high and low scores of PD have been determined relative to the
+sample (Riley et al., 2005). For example, in the Nun Study PD scores in the lower third of the
+sample were described as ‘‘lower’’ and those in the top third as ‘‘higher’’. Ferguson, Spencer,
+Craig, and Colyvas (2014) recently contributed to knowledge of the range of PD for healthy
+women across the adult lifespan from three age cohorts born between 1973–78, 1946–51 and
+1921–26 over a 16-year-period. This study analysed free text responses from 19 512 respondents
+to the Australian Longitudinal Study on Women’s Health. In total 37 705 responses were analysed
+for PD using freely downloadable software, the Computerised Propositional Idea Density Rater
+(CPIDR 3) (Brown, Snodgrass, & Covington, 2007). PD was found to be relatively stable for the
+cohorts across the 16-year time period during which five surveys were conducted at 3-year
+intervals. For the younger cohort born between 1973 and 78 and mid-aged cohort born between
+1946 and 51 at the start of the survey periods, average PD was found to be 0.54 propositions per
+word (5.4 propositions per 10 words).1 A small but significant drop in PD of 0.01 propositions per
+word (0.1 propositions per 10 words) was found for the older age cohort born between 1921 and
+26 (Ferguson et al., 2014). This rate of decline in PD scores for the older cohort was lower than
+those previously published for healthy ageing individuals such as those reported by Kemper and
+Sumner (2001). They found a decline of 0.2 propositions per word (2.0 propositions per 10 words)
+over a similar age span (Kemper & Sumner, 2001).
+In their study of John Hopkins Precursor study participants, Engelman et al. (2010) investigated
+PD in a total of 18 cases of people diagnosed with dementia and 36 matched control participants.
+Engelman et al. reported mean PD of 0.470 per word (4.7 per 10 words) for participants with
+dementia and 0.499 per word (4.99 per 10 words) for the control participants. While the majority
+of the participants were male, the mean figures do include the female participants due to pooling.
+Using a two sample t-test, the researchers found a statistically significant difference in PD scores
+for the control and the participants with a diagnosis of AD. Additionally, Engelman et al. found
+that the difference between the Precursor Study participants and controls was statistically
+significant thereby replicating the Nun Study findings of lower PD in earlier adulthood leading to
+higher risk of the development of AD. It is interesting to note that these mean PD scores for a
+homogenous group of participants (i.e. same levels of education) is lower than the average PD
+scores of 0.53 per 1 word (5.3 per 10 words) reported for the large sample of older women
+reported by Ferguson et al. (2014) and also for the Nun Study with means of 0.550 per 1 word
+(5.5 per 10 words) (Kemper, Greiner, et al., 2001; Mitzner & Kemper, 2003).
+1The convention of reporting PD scores per 10 words has traditionally been used, however, CPIDR uses the format of reporting PD per word.
+For ease of comparison with previous studies, we have chosen to report in both formats, PD per word and PD per 10 words.
+Propositional idea density in older men’s written language 87
+Chand et al. (2012) investigated PD using manual analysis in an ethnically and gender diverse
+population of 87 older adults, 48% of whom were male. Thirty eight participants had no cognitive
+impairment, 35 had mild cognitive impairment and 14 had a diagnosis of dementia syndrome. The
+mean age of the participants was 74.6 years. Mean PD scores for the subgroups with no cognitive
+impairment was 0.403 per word (4.03 per 10 words), 0.404 per word (4.04 per 10 words) for those
+with a clinical diagnosis of mild cognitive impairment (MCI) and 0.377 per word (3.77 per
+10 words) for those with dementia. It is important to note that these scores are lower than other
+published results and the sample data were oral rather than written narrative. The authors stated
+that they found no effect of gender or education on PD. Gender will be discussed further below.
+The population used in this study is from the same population as reported by Farais et al. for a
+slightly smaller group (81 participants, mean age 76.3 years, 47% male) (Farais et al., 2012). The
+average PD for the healthy ageing group was reported to be 0.308 per word (3.80 per 10 words)
+and 0.390 and 0.350 for the MCI and dementia groups, respectively. Again, this is lower than PD
+findings reported for written language samples such as the ALSWH, Nun Study and John Hopkins
+Precursor study populations summarised above. Mitzner and Kemper (2003) reported mean PD for
+oral language samples of Nun Study participants (mean age 83 years) as 0.499 (4.99 per 10 words)
+and 0.550 (5.50 per 10 words) for written language samples.
+It is well recognised in sociolinguistics that topic, mode (e.g. spoken or written) and audience
+impacts on language use in discourse. In relation to the issue of spoken versus written texts,
+Mitzner and Kemper (2003) found that written language samples differentiated more effectively
+than oral samples between Nun Study participants with differing levels of cognitive functioning
+(Mitzner & Kemper, 2003). Mitzner and Kemper cautioned against comparisons of scores across
+spoken and written discourse sample and recommended that PD scores from written discourse
+samples be used as they were more indicative of overall language ability when compared to other
+linguistic measures and cognitive ability (Mitzner & Kemper, 2003). This means that direct
+comparison of PD scores across studies is difficult due to a variety of factors that can impact on
+discourse including spoken or written texts and issues such as the size of the texts analysed
+(i.e. number of words), or the topic being written about. In relation to sample size, in both the
+Nun Study and the John Hopkins Precursor studies, the number of words for the texts analysed was
+not specified but the authors stated that the last 10 sentences of the letters or essays were analysed.
+Spencer, Craig, Ferguson, and Colyvas (2012) and Ferguson et al. (2014) analysed large numbers
+of texts which varied from 10 words to over 200. In the studies discussed above, all texts were
+written in response to a stimulus prompt.
+In summary, PD is a tantalising measure given the literature demonstrating its potential as a
+marker of cognitive health (Spencer et al., 2012). Therefore its potential, particularly in its
+computerised form, as a clinical tool is worthy of exploration. However, in order to determine
+clinically significant changes in PD (and other linguistic measures) in ageing adult populations,
+baselines of PD in healthy ageing adults needs to established. As discussed above, many of the
+studies have reported on PD levels for women, and to a lesser extent, men. Linguistic measures for
+men are worth investigating given the mixed findings regarding the effects of gender on language
+(Ullman, Miranda, & Travers, 2011). Collecting and analysing this data would further contribute
+to a growing reference set of typical language use in ageing adults (Ferguson et al., 2014; Spencer
+et al., 2012).
