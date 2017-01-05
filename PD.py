@@ -62,7 +62,7 @@ def IdeaDensity(inputtext, rnge=0):
 	#Removing positive modals from prop count.
 	#For negative modals: Modal is removed, negative part carries prop count & is not removed(otherwise: double count)
 	#Modal 'Have to' is removed in a later stage, when removing 'have' as a auxiliary verb
-	Modals = (('can', 'MD'),('Can', 'MD'),('could', 'MD'),('Could', 'MD'),('will', 'MD'),
+	Modals = (('can', 'MD'),('ca','MD'),('Can', 'MD'),('could', 'MD'),('Could', 'MD'),('will', 'MD'),
 		('Will', 'MD'),("'ll", 'MD'),('wo', 'MD'),('Wo', 'MD'),('would', 'MD'),('Would', 'MD'),
 		("'d", 'MD'),('shall', 'MD'),('Shall', 'MD'),('should', 'MD'),('Should', 'MD'),
 		('may', 'MD'),('May', 'MD'),('might', 'MD'),('Might', 'MD'),('must', 'MD'),('Must', 'MD'),
@@ -143,19 +143,22 @@ def IdeaDensity(inputtext, rnge=0):
 
 	AuxHAVE= (('have', 'VBP'),('Have', 'VBP'),('has', 'VBZ'),('Has', 'VBZ'),("'ve", 'VBP'),
 		('had', 'VBD'),('Had', 'VBD'),('have', 'VB'))
-	FolHAVE=('VBN','TO')
-	for i in range(1,(len(taggedtext)-(6+10*rnge))): 
+	FolHAVE=('VBN','TO','VBD') #VBD: test-run on larger text mistakingly tagged VBN as VBD. Won't do any harm to add this to the removal-list
+	for i in range(1,(len(taggedtext)-(6+rnge))): 
 		if taggedtext[i] in FollowingAux: 
 			if taggedtext[i-1] in AuxHAVE:
+				taggedtext[i-1]='remove it'
 				taggedtext.remove(taggedtext[i-1])
 		elif taggedtext[i-1] in AuxHAVE: 
 			for word in taggedtext[i]:
 				if word in FolHAVE:
+					taggedtext[i-1]='remove this as well'
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
 			for word in taggedtext[i+1]:
 				if word in FolHAVE:
+					taggedtext[i-1]='remove'
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
@@ -170,7 +173,7 @@ def IdeaDensity(inputtext, rnge=0):
 		('is','VBZ'),('Is','VBZ'),("'s",'VBZ'),('was','VBD'),('Was','VBD'),('were','VBD'),
 		('Were','VBD'),('been','VBN'),('Been','VBN'),('being','VBG'),('Being','VBG'),('be', 'VB'))
 	FolBE= ('VBG','VBN','TO') #TO --> Modal 'be to +verb'
-	for i in range(1,(len(taggedtext)-(9+rnge))): 
+	for i in range(1,(len(taggedtext)-(9+2*rnge))): 
 		if taggedtext[i-1] in AuxBE:
 			for word in taggedtext[i]:
 				if word in FolBE:
@@ -380,24 +383,38 @@ def IdeaDensity(inputtext, rnge=0):
 	#5. Measuring PD (#prop./#words)
 	propdensity= propcount/wordcount
 	print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>STATISTICS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<',
-		'\n\nPropositional Idea Density: 	\t',propdensity,
+		'\n\nPropositional Idea Density:\t\t\t',propdensity,
 		'\n----------------------------------------------------------------------',
-		'\nOriginal tagged text: 	\t\t\t', Originaltext,
-		'\nTotal wordcount: 		\t\t\t', wordcount,'items',
+		'\nTotal wordcount:\t\t\t\t\t', wordcount,'items',
 		'\nNumber of removed items (Absolute number, Relative number):',
-		'\n\t>> Modals: 			\t\t\t', modalcount,'\t\t',round(modalcount/wordcount,5),
-		'\n\t>> Auxiliary "to do": 	\t\t', DOcount,'\t\t',round(DOcount/wordcount,5),
-		'\n\t>> Auxiliary "to have": \t\t', HAVEcount,'\t\t',round(HAVEcount/wordcount,5),
-		'\n\t>> Auxiliary "to be": 	\t\t', BEcount,'\t\t',round(BEcount/wordcount,5),
-		'\n\t>> Remaining auxiliaries: 	\t', AUXcount,'\t\t',round(AUXcount/wordcount,5),
-		'\n\t>> "TO" followed by a verb: \t', TOcount,'\t\t',round(TOcount/wordcount,5),
-		'\n\t>> Copula "to be": 		\t\t', BECOPcount,'\t\t',round(BECOPcount/wordcount,5),
-		'\n\t>> Other copulas: 			\t', COPcount,'\t\t',round(COPcount/wordcount,5),
-		'\n\t>> Non-propositional tags:	\t', TAGcount,'\t',round(TAGcount/wordcount,5),
-		'\n\t>> "a,an,the"-determiners: \t\t', DTcount,'\t',round(DTcount/wordcount,5),
-		'\n\nTagged propositions: 		\t\t', taggedtext)
+		'\n\t>> Modals:\t\t\t\t\t\t', modalcount,'\t\t\t',round(modalcount/wordcount,5),
+		'\n\t>> Auxiliary "to do":\t\t\t', DOcount,'\t\t\t',round(DOcount/wordcount,5),
+		'\n\t>> Auxiliary "to have":\t\t\t', HAVEcount,'\t\t\t',round(HAVEcount/wordcount,5),
+		'\n\t>> Auxiliary "to be":\t\t\t', BEcount,'\t\t\t',round(BEcount/wordcount,5),
+		'\n\t>> Remaining auxiliaries:\t\t', AUXcount,'\t\t\t',round(AUXcount/wordcount,5),
+		'\n\t>> "TO" followed by a verb:\t\t', TOcount,'\t\t\t',round(TOcount/wordcount,5),
+		'\n\t>> Copula "to be":\t\t\t\t', BECOPcount,'\t\t\t',round(BECOPcount/wordcount,5),
+		'\n\t>> Other copulas:\t\t\t\t', COPcount,'\t\t\t',round(COPcount/wordcount,5),
+		'\n\t>> Non-propositional tags:\t\t',TAGcount,'\t\t\t',round(TAGcount/wordcount,5),
+		'\n\t>> "a,an,the"-determiners:\t\t', DTcount,'\t\t\t',round(DTcount/wordcount,5),
+		'\n----------------------------------------------------------------------',
+		'\nOriginal tagged text: \t\t\t\t', Originaltext,
+		'\n\nTagged propositions: \t\t\t\t', taggedtext)
+	
+	import time
+	print('Date of analysis:\t'+time.strftime("%Y-%m-%d %H:%M"))
 
-	#Next step: printing to new file
-	#Next next step: pickle
+	statistics='>>>>>>>>>>>>>>>>>>>>>>>>>>>>>STATISTICS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'+'\n\nPropositional Idea Density: \t\t'+str(propdensity)+'\n----------------------------------------------------------------------'+'\nTotal wordcount: 	\t\t'+ str(wordcount)+' items'+'\nNumber of removed items (Absolute number, Relative number):'+'\n\t>> Modals: 	\t\t' +str(modalcount)+'\t\t'+str(round(modalcount/wordcount,5))+'\n\t>> Auxiliary "to do":\t\t'+ str(DOcount)+'\t\t'+str(round(DOcount/wordcount,5))+'\n\t>> Auxiliary "to have":\t\t'+ str(HAVEcount)+'\t\t'+str(round(HAVEcount/wordcount,5))+'\n\t>> Auxiliary "to be": \t\t' +str(BEcount)+'\t\t'+str(round(BEcount/wordcount,5))+'\n\t>> Remaining auxiliaries: \t' +str(AUXcount)+'\t\t'+str(round(AUXcount/wordcount,5))+'\n\t>> "TO" followed by a verb:\t' +str(TOcount)+'\t\t'+str(round(TOcount/wordcount,5))+'\n\t>> Copula "to be":\t\t' +str(BECOPcount)+'\t\t'+str(round(BECOPcount/wordcount,5))+'\n\t>> Other copulas:\t\t' +str(COPcount)+'\t\t'+str(round(COPcount/wordcount,5))+'\n\t>> Non-propositional tags:\t' +str(TAGcount)+'\t\t'+str(round(TAGcount/wordcount,5))+'\n\t>> "a,an,the"-determiners:\t'+ str(DTcount)+'\t\t'+str(round(DTcount/wordcount,5))+'\n----------------------------------------------------------------------'+'\nDate of analysis:\t'+str(time.strftime("%Y-%m-%d %H:%M"))+'\n\nOriginal tagged text: \t\t\t' +str(Originaltext)+'\n\nTagged propositions: \t\t\t' +str(taggedtext)
+
+	outputtext='statistics-'+inputtext
+	output = open(outputtext,'wt')
+	output.write(statistics)
+	output.close()
+
+	proptext='tagged_propositions-'+inputtext
+	propoutput = open(proptext,'wt')
+	propoutput.write(str(taggedtext))
+	propoutput.close()
+
 
 IdeaDensity('secondtext.txt')
