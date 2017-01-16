@@ -5,8 +5,6 @@ related to documenting and describing age-related cognitive decline and, more re
 documenting the benefits associated with healthy ageing, such as how knowledge and experience
 can, to some extent, offset or ameliorate age-related decline (Park, 2012). This can be evidenced
 particularly when people are functioning in familiar, everyday environments and doing routine
-Correspondence: Dr. Elizabeth Spencer, School of Humanities and Social Science, University of Newcastle, Callaghan, NSW 2308,
-Australia. Tel: (61) 4921 5161. Fax: (61) 4921 7388. E-mail: Elizabeth.Spencer@newcastle.edu.au
 activities (Park & Hall Gutchess, 2012). One way in which these activities are mediated is through
 the use of language. With regard to language in particular, research has explored if and how
 language declines with age and whether language ability has been related to aspects of cognitive
@@ -22,7 +20,7 @@ language which may, in turn, be an indicator of cognitive decline. Researchers f
 and ageing fields have demonstrated how linguistic measures can provide indices of linguistic
 change over time. For example, the linguistic abilities as evidenced in published works by Iris
 Murdoch (who had a confirmed diagnosis of Alzheimer dementia post mortem) and of Agatha
-Christie (who had suspected but unconfirmed diagnosis of Alzheimer’s dementia [AD])
+Christie (who had suspected but unconfirmed diagnosis of Alzheimer's dementia [AD])
 demonstrated declines in measures of linguistic complexity (Garrard, 2009; Garrard, Maloney,
 Hodges, & Patterson, 2005; Lancashire, 2010; Le, Lancashire, Hirst, & Jokel, 2011). Among
 studies into ageing which incorporated linguistic measures and related these to cognitive abilities,
@@ -69,11 +67,11 @@ matched control participants. Scores for PD have been reported but these results
 difficult to interpret. For example, the range of scores provided for healthy ageing individuals is
 large and, for those with AD, high and low scores of PD have been determined relative to the
 sample (Riley et al., 2005). For example, in the Nun Study PD scores in the lower third of the
-sample were described as ‘‘lower’’ and those in the top third as ‘‘higher’’. Ferguson, Spencer,
+sample were described as 'lower' and those in the top third as 'higher'. Ferguson, Spencer,
 Craig, and Colyvas (2014) recently contributed to knowledge of the range of PD for healthy
-women across the adult lifespan from three age cohorts born between 1973–78, 1946–51 and
+women across the adult lifespan from three age cohorts born between 1973-78, 1946-51 and
 1921–26 over a 16-year-period. This study analysed free text responses from 19 512 respondents
-to the Australian Longitudinal Study on Women’s Health. In total 37 705 responses were analysed
+to the Australian Longitudinal Study on Women's Health. In total 37 705 responses were analysed
 for PD using freely downloadable software, the Computerised Propositional Idea Density Rater
 (CPIDR 3) (Brown, Snodgrass, & Covington, 2007). PD was found to be relatively stable for the
 cohorts across the 16-year time period during which five surveys were conducted at 3-year

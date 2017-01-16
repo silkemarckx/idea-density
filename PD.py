@@ -15,9 +15,14 @@ def IdeaDensity(inputtext, rnge=0):
 
 	#2. Total word count
 	#Deleting punctuation
-	#Problem: Only removes all punctuation after a second identical loop. 
+	#Problem: Only removes all punctuation after a second& even third identical loop. 
 	#=> OVERALL PROBLEM: 2 items with same tag: No removal of second item!!
 	Punctuation = (',','.','!',';','?',':',"'","''",'``','(',')')
+	for word in taggedtext:
+		if word[1] in Punctuation:
+			taggedtext.remove(word)
+		else:
+			continue
 	for word in taggedtext:
 		if word[1] in Punctuation:
 			taggedtext.remove(word)
@@ -51,12 +56,11 @@ def IdeaDensity(inputtext, rnge=0):
 	-linking verbs """
 
 	#Adjustment rules:
-	""" 'either...or' = 1 prop.
-	'to'+verb = 1 prop
-	'a,an,the' =/ prop
-	models =/ prop, UNLESS negative (ending in "n't")
+	"""'to'+verb = 1 prop
+	'a,an,the' != prop
+	models != prop, UNLESS negative (ending in "n't")
 	COPULA + NP ==> copula = prop 
-	COPULA + AdjP ==> copula(linking verb) =/ prop  (AdjP=prop!)"""
+	COPULA + AdjP ==> copula(linking verb) != prop  (AdjP=prop!)"""
 	propcount= len(taggedtext)
 
 	#Removing positive modals from prop count.
@@ -76,6 +80,7 @@ def IdeaDensity(inputtext, rnge=0):
 	for i in range(1,(len(taggedtext)-(1+rnge))):
 		if taggedtext[i] == ('to', 'TO'): 
 			if taggedtext[i-1] == ('got', 'VBN'):
+				taggedtext[i-1]='remove modal'
 				taggedtext.remove(taggedtext[i-1])
 			else:
 				continue
@@ -84,36 +89,36 @@ def IdeaDensity(inputtext, rnge=0):
 
 	ModalNeed= (('need', 'VB'),('Need', 'VB'),('need', 'VBP'),('Need', 'VBP'), ('need', 'MD'),('needed', 'VBD'),('Needed', 'VBD'))
 	Negative= (("n't", 'RB'),('not', 'RB'))
-	for i in range(1,(len(taggedtext)-(5+rnge))): 
+	for i in range(1,(len(taggedtext)-(15+rnge))): 
 		if taggedtext[i-1] in ModalNeed: 
 			if taggedtext[i] != ('to', 'TO'): #Following the original grammar rules: need + to = main verb, instead of semi-modal
 				if taggedtext[i] in Negative:
+					taggedtext[i-1]='remove the word'
 					taggedtext.remove(taggedtext[i-1])
+				elif str(taggedtext[i]).endswith("'VB')"):
+					taggedtext[i-1]="I need to rename this, in order to avoid removing all 'need'"
+					taggedtext.remove(taggedtext[i-1])
+				elif str(taggedtext[i+1]).endswith("'VB')"):
+					taggedtext[i-1]="I need to rename this as well, in order to avoid removing all 'need'"
+					taggedtext.remove(taggedtext[i-1])					
 				else:
-					for word in taggedtext[i]:
-						if word == 'VB':
-							taggedtext[i-1]="I need to rename this, in order to avoid removing all 'need'"
-							taggedtext.remove(taggedtext[i-1])
-						else:
-							continue
-					for word in taggedtext: #problem: NOT CASE-SENSITIVE??????????!!!!!!!!!!
-						if word == ('Need', 'VB'): #only modal need can initiate a sentence
-							#print('Beginning', word)
-							taggedtext.remove(word)
-						else:
-							continue
+					continue
 			else:
 				continue
 		else:
 			continue
 	for i in range(1,(len(taggedtext)-(6+rnge))): 
 		if taggedtext[i-1] in ModalNeed: 
-			if taggedtext[i] != ('to', 'TO'): 
-				for word in taggedtext[i+1]: #problem: '... need her. Do' --> need=removed!
-					if word == 'VB':
+			if str(taggedtext[i]).endswith("'PRP')"): 
+				if str(taggedtext[i+1]).endswith("'VB')"):
+					taggedtext[i-1]='Remove need'
+					taggedtext.remove(taggedtext[i-1])
+				elif (str(taggedtext[i+2]).endswith("'VB')")) or (str(taggedtext[i+2]).endswith("'VBP')")):
+					if str(taggedtext[i+1]).endswith("'RB')"):
+						taggedtext[i-1]='Remove need again'
 						taggedtext.remove(taggedtext[i-1])
-					else:
-						continue
+				else:
+					continue
 			else:
 				continue
 		else:
@@ -127,7 +132,7 @@ def IdeaDensity(inputtext, rnge=0):
 	AuxDO= (('do', 'VBP'),('Do', 'VBP'),('does', 'VBZ'),('Does', 'VBZ'),('did', 'VBD'),('Did', 'VBD'))
 	FollowingAux = (("n't", 'RB'),('not', 'RB'),('been', 'VBN'))
 	PRP = (('I','PRP'),('you','PRP'),('she','PRP'),('he','PRP'),('we','PRP'),('they','PRP'),('it','PRP'))
-	for i in range(1,(len(taggedtext)-(2+(1*rnge)))): 
+	for i in range(2,(len(taggedtext)-(6+(1*rnge)))): 
 		if taggedtext[i-2] != ('to','TO'):
 			if taggedtext[i] in FollowingAux: 
 				if taggedtext[i-1] in AuxDO:
@@ -141,16 +146,24 @@ def IdeaDensity(inputtext, rnge=0):
 			continue
 	for i in range(1,(len(taggedtext)-(4+(1*rnge)))): 
 		if taggedtext[i-1] in AuxDO:
-				if taggedtext[i] in PRP:
-					for word in taggedtext[i+1]:
-						if word == ('VB'):
-							taggedtext[i-1]='delete do'
-							taggedtext.remove(taggedtext[i-1])
-						else:
-							continue
-				else:
-					continue
-
+			if taggedtext[i] in PRP:
+				for word in taggedtext[i+1]:
+					if word == ('VB'):
+						taggedtext[i-1]='delete do'
+						taggedtext.remove(taggedtext[i-1])
+					else:
+						continue
+			else:
+				continue
+	for i in range(1,(len(taggedtext)-(4+(1*rnge)))): 
+		if taggedtext[i] in AuxDO:
+			if str(taggedtext[i-1]).endswith("'WRB')"):
+				taggedtext[i]='do not remove the wrong word!'
+				taggedtext.remove(taggedtext[i])
+			else:
+				continue
+		else:
+			continue
 	DOcount = propcount-len(taggedtext)
 	#print('#removed Do-verbs: ', DOcount)
 	propcount= len(taggedtext)
@@ -159,7 +172,7 @@ def IdeaDensity(inputtext, rnge=0):
 	AuxHAVE= (('have', 'VBP'),('Have', 'VBP'),('has', 'VBZ'),('Has', 'VBZ'),("'ve", 'VBP'),
 		('had', 'VBD'),('Had', 'VBD'),('have', 'VB'))
 	FolHAVE=('VBN','TO','VBD') #VBD: test-run on larger text mistakingly tagged VBN as VBD. Won't do any harm to add this to the removal-list
-	for i in range(1,(len(taggedtext)-(6+3*rnge))): 
+	for i in range(1,(len(taggedtext)-(10+4*rnge))): 
 		if taggedtext[i] in FollowingAux: 
 			if taggedtext[i-1] in AuxHAVE:
 				taggedtext[i-1]='remove it'
@@ -188,20 +201,20 @@ def IdeaDensity(inputtext, rnge=0):
 		('is','VBZ'),('Is','VBZ'),("'s",'VBZ'),('was','VBD'),('Was','VBD'),('were','VBD'),
 		('Were','VBD'),('been','VBN'),('Been','VBN'),('being','VBG'),('Being','VBG'),('be', 'VB'))
 	FolBE= ('VBG','VBN','TO') #TO --> Modal 'be to +verb'
-	for i in range(1,(len(taggedtext)-(8+3*rnge))): 
+	for i in range(1,(len(taggedtext)-(10+3*rnge))): 
 		if taggedtext[i-1] in AuxBE:
 			for word in taggedtext[i]:
 				if word in FolBE:
-					taggedtext[i-1]='remove'
+					taggedtext[i-1]='remove be'
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
-	for i in range(1,(len(taggedtext)-(2+rnge))): 
+	for i in range(1,(len(taggedtext)-(2+2*rnge))): 
 		if taggedtext[i-1] in AuxBE:
 			if not str(taggedtext[i]).endswith("'DT')"):
 				for word in taggedtext[i+1]:
 					if word in FolBE:
-						taggedtext[i-1]='remove be'
+						taggedtext[i-1]='remove be again'
 						taggedtext.remove(taggedtext[i-1])
 					else:
 						continue
@@ -226,6 +239,7 @@ def IdeaDensity(inputtext, rnge=0):
 		if taggedtext[i-1] in AuxGET:
 			for word in taggedtext[i]:
 				if word == 'VBN':
+					taggedtext[i-1]='remove get'
 					taggedtext.remove(taggedtext[i-1])
 
 	#removing aux 'used/able/going/need to'
@@ -252,7 +266,7 @@ def IdeaDensity(inputtext, rnge=0):
 	#Problem: Only removes all 'To'(+verb) after second identical loop. (=Overall problem)
 	FolTO = ('VB','VBG','VBN') #When aux have&be are removed-->> (VBG: have to be ..ing--> to ...ing) (VBN: ought to have ..ed --> to ..ed)
 	NOTFOLTO = ('DT','NNP','NN','NNS','NNPS','PRP','PRP$') 
-	for i in range(1,(len(taggedtext)-(12+(3*rnge)))):
+	for i in range(1,(len(taggedtext)-(10+(6*rnge)))):
 		if taggedtext[i-1] == ('to', 'TO'): 
 			for word in taggedtext[i]:
 				if word not in NOTFOLTO: #extra security
@@ -287,7 +301,7 @@ def IdeaDensity(inputtext, rnge=0):
 	PrimeCopula = (('be','VB'),('am','VBP'),("'m",'VBP'),('are','VBP'),("'re",'VBP'),('is','VBZ'),("'s",'VBZ'),
 		('was','VBD'),('were','VBD'),('been','VBN'),('being','VBG'))
 	AdjP= ('JJ','JJR','JJS')
-	for i in range(1,(len(taggedtext)-(1+rnge))): 
+	for i in range(1,(len(taggedtext)-(10+2*rnge))): 
 		if taggedtext[i-1] in PrimeCopula:
 			if not str(taggedtext[i]).endswith("'DT')"):
 				for word in taggedtext[i]:
@@ -306,7 +320,7 @@ def IdeaDensity(inputtext, rnge=0):
 						if not str(taggedtext[i+2]).endswith("'NN')"):
 							for word in taggedtext[i+1]:
 								if word in AdjP:
-									taggedtext[i-1]="To be removed"
+									taggedtext[i-1]="be to be removed"
 									taggedtext.remove(taggedtext[i-1])
 								else:
 									continue
@@ -343,6 +357,7 @@ def IdeaDensity(inputtext, rnge=0):
 		if (taggedtext[i-1] in CopulaInchoative or taggedtext[i-1] in CopulaSenses or taggedtext[i-1] in CopulaOthers):
 			for word in taggedtext[i]:
 				if word in AdjP:
+					taggedtext[i-1]='remove cop'
 					taggedtext.remove(taggedtext[i-1])
 	for i in range(1,(len(taggedtext)-(2+rnge))): 
 		if (taggedtext[i-1] in CopulaInchoative or taggedtext[i-1] in CopulaSenses or taggedtext[i-1] in CopulaOthers):
@@ -350,6 +365,7 @@ def IdeaDensity(inputtext, rnge=0):
 				if word == 'RB':
 					for word in taggedtext[i+1]:
 						if word in AdjP:
+							taggedtext[i-1]='remove copu'
 							taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
@@ -372,6 +388,7 @@ def IdeaDensity(inputtext, rnge=0):
 	for i in range(1,(len(taggedtext)-(2+rnge))): 
 		if taggedtext[i-1] in CopulaSenses:
 			if taggedtext[i] == ('like', 'IN'):
+				taggedtext[i-1]='remove copula'
 				taggedtext.remove(taggedtext[i-1])
 			else:
 				continue
@@ -466,4 +483,4 @@ def IdeaDensity(inputtext, rnge=0):
 	propoutput.close()
 
 
-IdeaDensity('secondtext.txt')
+IdeaDensity('Trump.txt')
