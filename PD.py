@@ -3,7 +3,7 @@ from nltk import word_tokenize, pos_tag
 
 def IdeaDensity(inputtext, rnge=0):
 	#1. tokenization & part-of-speech tagging
-	f = open(inputtext,'rt', encoding='utf-8') #http://www.americanrhetoric.com/speeches/barackobama/barackobamawhitehousecorrespondentsdinner2016.htm
+	f = open(inputtext,'rt', encoding='utf-8-sig') #http://www.americanrhetoric.com/speeches/barackobama/barackobamawhitehousecorrespondentsdinner2016.htm
 	text=f.read()
 	f.close()
 
@@ -33,7 +33,7 @@ def IdeaDensity(inputtext, rnge=0):
 	#print('wordcount: ',wordcount)
 
 	if wordcount > 10000:
-		rnge +=184
+		rnge +=90
 	elif wordcount > 2000:
 		rnge +=40
 	elif wordcount >1000:
@@ -124,18 +124,33 @@ def IdeaDensity(inputtext, rnge=0):
 
 
 	#Removing auxiliary verbs
-	#Problem: sentences like 'Why did you tell her that...' --> 'did' is NOT removed
 	AuxDO= (('do', 'VBP'),('Do', 'VBP'),('does', 'VBZ'),('Does', 'VBZ'),('did', 'VBD'),('Did', 'VBD'))
 	FollowingAux = (("n't", 'RB'),('not', 'RB'),('been', 'VBN'))
-	for i in range(5,(len(taggedtext)-(2+(100*rnge)))): 
-		if taggedtext[i] in FollowingAux: 
-			if taggedtext[i-1] in AuxDO:
-				taggedtext.remove(taggedtext[i-1])
+	PRP = (('I','PRP'),('you','PRP'),('she','PRP'),('he','PRP'),('we','PRP'),('they','PRP'),('it','PRP'))
+	for i in range(1,(len(taggedtext)-(2+(1*rnge)))): 
+		if taggedtext[i-2] != ('to','TO'):
+			if taggedtext[i] in FollowingAux: 
+				if taggedtext[i-1] in AuxDO:
+					taggedtext[i-1]= 'delete it'
+					taggedtext.remove(taggedtext[i-1])
+				else:
+					continue
+			else:
+				continue
 		else:
 			continue
-	for word in taggedtext: #removing do-verbs that initate a sentence.
-		if (word == ('Do','VBP') or word == ('Does', 'VBZ')):
-			taggedtext.remove(word)
+	for i in range(1,(len(taggedtext)-(4+(1*rnge)))): 
+		if taggedtext[i-1] in AuxDO:
+				if taggedtext[i] in PRP:
+					for word in taggedtext[i+1]:
+						if word == ('VB'):
+							taggedtext[i-1]='delete do'
+							taggedtext.remove(taggedtext[i-1])
+						else:
+							continue
+				else:
+					continue
+
 	DOcount = propcount-len(taggedtext)
 	#print('#removed Do-verbs: ', DOcount)
 	propcount= len(taggedtext)
@@ -144,7 +159,7 @@ def IdeaDensity(inputtext, rnge=0):
 	AuxHAVE= (('have', 'VBP'),('Have', 'VBP'),('has', 'VBZ'),('Has', 'VBZ'),("'ve", 'VBP'),
 		('had', 'VBD'),('Had', 'VBD'),('have', 'VB'))
 	FolHAVE=('VBN','TO','VBD') #VBD: test-run on larger text mistakingly tagged VBN as VBD. Won't do any harm to add this to the removal-list
-	for i in range(1,(len(taggedtext)-(6+rnge))): 
+	for i in range(1,(len(taggedtext)-(6+3*rnge))): 
 		if taggedtext[i] in FollowingAux: 
 			if taggedtext[i-1] in AuxHAVE:
 				taggedtext[i-1]='remove it'
@@ -173,7 +188,7 @@ def IdeaDensity(inputtext, rnge=0):
 		('is','VBZ'),('Is','VBZ'),("'s",'VBZ'),('was','VBD'),('Was','VBD'),('were','VBD'),
 		('Were','VBD'),('been','VBN'),('Been','VBN'),('being','VBG'),('Being','VBG'),('be', 'VB'))
 	FolBE= ('VBG','VBN','TO') #TO --> Modal 'be to +verb'
-	for i in range(1,(len(taggedtext)-(9+2*rnge))): 
+	for i in range(1,(len(taggedtext)-(8+3*rnge))): 
 		if taggedtext[i-1] in AuxBE:
 			for word in taggedtext[i]:
 				if word in FolBE:
@@ -181,17 +196,24 @@ def IdeaDensity(inputtext, rnge=0):
 					taggedtext.remove(taggedtext[i-1])
 				else:
 					continue
-			for word in taggedtext[i+1]:
-				if word in FolBE:
-					taggedtext.remove(taggedtext[i-1])
-				else:
-					continue
+	for i in range(1,(len(taggedtext)-(2+rnge))): 
+		if taggedtext[i-1] in AuxBE:
+			if not str(taggedtext[i]).endswith("'DT')"):
+				for word in taggedtext[i+1]:
+					if word in FolBE:
+						taggedtext[i-1]='remove be'
+						taggedtext.remove(taggedtext[i-1])
+					else:
+						continue
+	for i in range(1,(len(taggedtext)-(8+rnge))): 
 		if taggedtext[i-1] in AuxBE: #without repetition of if-clause: removal of wrong word!!
-			for word in taggedtext[i+2]:
-				if word in FolBE:
-					taggedtext.remove(taggedtext[i-1])
-				else:
-					continue
+			if not str(taggedtext[i]).endswith("'DT')"):
+				for word in taggedtext[i+2]:
+					if word in FolBE:
+						taggedtext[i-1]='remove '		
+						taggedtext.remove(taggedtext[i-1])
+					else:
+						continue
 		else:
 			continue
 	BEcount = propcount-len(taggedtext)
@@ -211,10 +233,11 @@ def IdeaDensity(inputtext, rnge=0):
 	for i in range(1,(len(taggedtext)-(7+rnge))): 
 		if taggedtext[i-1] in Xto: 
 			if taggedtext[i] == ('to', 'TO'):
-				for word in taggedtext[i+1]:
-					if word == 'VB':
-						word ="I need to rename this, in order to avoid removing all TO's"
-						taggedtext.remove(taggedtext[i-1])
+				if str(taggedtext[i+1]).endswith("'VB')"):
+					taggedtext[i-1]='REMOVE THIS'
+					taggedtext.remove(taggedtext[i-1])
+				else:
+					continue
 			else:
 				continue			
 		else:
@@ -229,7 +252,7 @@ def IdeaDensity(inputtext, rnge=0):
 	#Problem: Only removes all 'To'(+verb) after second identical loop. (=Overall problem)
 	FolTO = ('VB','VBG','VBN') #When aux have&be are removed-->> (VBG: have to be ..ing--> to ...ing) (VBN: ought to have ..ed --> to ..ed)
 	NOTFOLTO = ('DT','NNP','NN','NNS','NNPS','PRP','PRP$') 
-	for i in range(1,(len(taggedtext)-(12+(2*rnge)))):
+	for i in range(1,(len(taggedtext)-(12+(3*rnge)))):
 		if taggedtext[i-1] == ('to', 'TO'): 
 			for word in taggedtext[i]:
 				if word not in NOTFOLTO: #extra security
@@ -266,28 +289,31 @@ def IdeaDensity(inputtext, rnge=0):
 	AdjP= ('JJ','JJR','JJS')
 	for i in range(1,(len(taggedtext)-(1+rnge))): 
 		if taggedtext[i-1] in PrimeCopula:
-			for word in taggedtext[i]:
-				if word in AdjP:
-					taggedtext[i-1]="to be removed"
-					taggedtext.remove(taggedtext[i-1])
-				else:
-					continue
+			if not str(taggedtext[i]).endswith("'DT')"):
+				for word in taggedtext[i]:
+					if word in AdjP:
+						taggedtext[i-1]="to be removed"
+						taggedtext.remove(taggedtext[i-1])
+					else:
+						continue
 		else:
 			continue
 	for i in range(1,(len(taggedtext)-(1+rnge))): 
 		if taggedtext[i-1] in PrimeCopula:
-			for word in taggedtext[i]:
-				if word == 'RB':
-					for word in taggedtext[i+1]:
-						if word in AdjP:
-							taggedtext[i-1]="To be removed"
-							taggedtext.remove(taggedtext[i-1])
+			if not str(taggedtext[i]).endswith("'DT')"):
+				for word in taggedtext[i]:
+					if word == 'RB':
+						if not str(taggedtext[i+2]).endswith("'NN')"):
+							for word in taggedtext[i+1]:
+								if word in AdjP:
+									taggedtext[i-1]="To be removed"
+									taggedtext.remove(taggedtext[i-1])
+								else:
+									continue
 						else:
 							continue
-				else:
-					continue
-		else:
-			continue		
+					else:
+						continue		
 	BECOPcount = propcount-len(taggedtext)
 	#print('#removed COPULA-verbs: ', BECOPcount)
 	propcount= len(taggedtext)
@@ -329,6 +355,28 @@ def IdeaDensity(inputtext, rnge=0):
 					continue
 		else:
 			continue
+	for i in range(1,(len(taggedtext)-(2+rnge))): 
+		if (taggedtext[i-1] in CopulaInchoative or taggedtext[i-1] in CopulaSenses or taggedtext[i-1] in CopulaOthers):
+			if str(taggedtext[i]).endswith("'RB')"):
+				if str(taggedtext[i+1]).endswith("'RB')"):
+					for word in taggedtext[i+2]:
+						if word in AdjP:
+							taggedtext[i-1]="this is a copula"
+							taggedtext.remove(taggedtext[i-1])
+						else:
+							continue
+				else:
+					continue
+		else:
+			continue
+	for i in range(1,(len(taggedtext)-(2+rnge))): 
+		if taggedtext[i-1] in CopulaSenses:
+			if taggedtext[i] == ('like', 'IN'):
+				taggedtext.remove(taggedtext[i-1])
+			else:
+				continue
+		else: 
+			continue
 
 	#print('Propositions -COP: ',taggedtext)
 	COPcount = propcount-len(taggedtext)
@@ -336,9 +384,14 @@ def IdeaDensity(inputtext, rnge=0):
 	propcount= len(taggedtext)
 
 	#Removing non-propositional tags + some determiners
-	#Problem: see overall problem. 3 identical loops needed!!
+	#Problem: see overall problem. 4 identical loops needed!! (test-run on conrad.txt still kept 2 NN & 1 PRP after 3loops)
 	Removetags = ('NNP','NN','NNS','NNPS','PRP','RP','EX')
 	for word in taggedtext: #word= ('word','tag')
+		if word[1] in Removetags:
+			taggedtext.remove(word)
+		else:
+			continue
+	for word in taggedtext: 
 		if word[1] in Removetags:
 			taggedtext.remove(word)
 		else:
@@ -368,11 +421,7 @@ def IdeaDensity(inputtext, rnge=0):
 			taggedtext.remove(word)
 		else:
 			continue
-	for word in taggedtext: 
-		if word[0] in RemoveDT:
-			taggedtext.remove(word)
-		else:
-			continue
+
 
 	#print('Propositions -tags etc. : ',taggedtext)
 	DTcount = propcount-len(taggedtext)
@@ -404,7 +453,7 @@ def IdeaDensity(inputtext, rnge=0):
 	import time
 	print('Date of analysis:\t'+time.strftime("%Y-%m-%d %H:%M"))
 
-	statistics='>>>>>>>>>>>>>>>>>>>>>>>>>>>>>STATISTICS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'+'\n\nPropositional Idea Density: \t\t'+str(propdensity)+'\n----------------------------------------------------------------------'+'\nTotal wordcount: 	\t\t'+ str(wordcount)+' items'+'\nNumber of removed items (Absolute number, Relative number):'+'\n\t>> Modals: 	\t\t' +str(modalcount)+'\t\t'+str(round(modalcount/wordcount,5))+'\n\t>> Auxiliary "to do":\t\t'+ str(DOcount)+'\t\t'+str(round(DOcount/wordcount,5))+'\n\t>> Auxiliary "to have":\t\t'+ str(HAVEcount)+'\t\t'+str(round(HAVEcount/wordcount,5))+'\n\t>> Auxiliary "to be": \t\t' +str(BEcount)+'\t\t'+str(round(BEcount/wordcount,5))+'\n\t>> Remaining auxiliaries: \t' +str(AUXcount)+'\t\t'+str(round(AUXcount/wordcount,5))+'\n\t>> "TO" followed by a verb:\t' +str(TOcount)+'\t\t'+str(round(TOcount/wordcount,5))+'\n\t>> Copula "to be":\t\t' +str(BECOPcount)+'\t\t'+str(round(BECOPcount/wordcount,5))+'\n\t>> Other copulas:\t\t' +str(COPcount)+'\t\t'+str(round(COPcount/wordcount,5))+'\n\t>> Non-propositional tags:\t' +str(TAGcount)+'\t\t'+str(round(TAGcount/wordcount,5))+'\n\t>> "a,an,the"-determiners:\t'+ str(DTcount)+'\t\t'+str(round(DTcount/wordcount,5))+'\n----------------------------------------------------------------------'+'\nDate of analysis:\t'+str(time.strftime("%Y-%m-%d %H:%M"))+'\n\nOriginal tagged text: \t\t\t' +str(Originaltext)+'\n\nTagged propositions: \t\t\t' +str(taggedtext)
+	statistics='>>>>>>>>>>>>>>>>>>>>>>>>>>>>>STATISTICS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'+'\n\nPropositional Idea Density: \t\t'+str(propdensity)+'\n----------------------------------------------------------------------'+'\nTotal wordcount: 	\t\t'+ str(wordcount)+' items'+'\nNumber of removed items (Absolute number, Relative number):'+'\n\t>> Modals: 	\t\t' +str(modalcount)+'\t\t'+str(round(modalcount/wordcount,5))+'\n\t>> Auxiliary "to do":\t\t'+ str(DOcount)+'\t\t'+str(round(DOcount/wordcount,5))+'\n\t>> Auxiliary "to have":\t\t'+ str(HAVEcount)+'\t\t'+str(round(HAVEcount/wordcount,5))+'\n\t>> Auxiliary "to be": \t\t' +str(BEcount)+'\t\t'+str(round(BEcount/wordcount,5))+'\n\t>> Remaining auxiliaries: \t' +str(AUXcount)+'\t\t'+str(round(AUXcount/wordcount,5))+'\n\t>> "TO" followed by a verb:\t' +str(TOcount)+'\t\t'+str(round(TOcount/wordcount,5))+'\n\t>> Copula "to be":\t\t' +str(BECOPcount)+'\t\t'+str(round(BECOPcount/wordcount,5))+'\n\t>> Other copulas:\t\t' +str(COPcount)+'\t\t'+str(round(COPcount/wordcount,5))+'\n\t>> Non-propositional tags:\t' +str(TAGcount)+'\t\t'+str(round(TAGcount/wordcount,5))+'\n\t>> "a,an,the"-determiners:\t'+ str(DTcount)+'\t\t'+str(round(DTcount/wordcount,5))+'\n----------------------------------------------------------------------'+'\nDate of analysis:\t'+str(time.strftime("%Y-%m-%d %H:%M"))+'\n\noriginal text:\t\t\t'+str(text)+'\n\nOriginal tagged text: \t\t\t' +str(Originaltext)+'\n\nTagged propositions: \t\t\t' +str(taggedtext)
 
 	outputtext='statistics-'+inputtext
 	output = open(outputtext,'wt')
@@ -413,7 +462,7 @@ def IdeaDensity(inputtext, rnge=0):
 
 	proptext='tagged_propositions-'+inputtext
 	propoutput = open(proptext,'wt')
-	propoutput.write(str(taggedtext))
+	propoutput.write('Date of analysis:\t'+str(time.strftime("%Y-%m-%d %H:%M"))+'\n\nOriginal text:\n\t'+str(text)+'\n\nTagged propositional elements:\n\t'+str(taggedtext))
 	propoutput.close()
 
 
