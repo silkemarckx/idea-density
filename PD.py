@@ -35,7 +35,6 @@ def IdeaDensity(inputtext, rnge=0):
 			continue
 
 	wordcount = len(taggedtext)
-	#print('wordcount: ',wordcount)
 
 	if wordcount > 10000:
 		rnge +=90
@@ -124,7 +123,6 @@ def IdeaDensity(inputtext, rnge=0):
 		else:
 			continue
 	modalcount = propcount-len(taggedtext)
-	#print('#removed modals: ', modalcount)
 	propcount= len(taggedtext)
 
 
@@ -165,7 +163,6 @@ def IdeaDensity(inputtext, rnge=0):
 		else:
 			continue
 	DOcount = propcount-len(taggedtext)
-	#print('#removed Do-verbs: ', DOcount)
 	propcount= len(taggedtext)
 
 
@@ -193,7 +190,6 @@ def IdeaDensity(inputtext, rnge=0):
 		else:
 			continue
 	HAVEcount = propcount-len(taggedtext)
-	#print('#removed HAVE-verbs: ', HAVEcount)
 	propcount= len(taggedtext)
 
 
@@ -219,7 +215,7 @@ def IdeaDensity(inputtext, rnge=0):
 					else:
 						continue
 	for i in range(1,(len(taggedtext)-(8+rnge))): 
-		if taggedtext[i-1] in AuxBE: #without repetition of if-clause: removal of wrong word!!
+		if taggedtext[i-1] in AuxBE: 
 			if not str(taggedtext[i]).endswith("'DT')"):
 				for word in taggedtext[i+2]:
 					if word in FolBE:
@@ -230,7 +226,6 @@ def IdeaDensity(inputtext, rnge=0):
 		else:
 			continue
 	BEcount = propcount-len(taggedtext)
-	#print('#removed BE-verbs: ', BEcount)
 	propcount= len(taggedtext)
 
 
@@ -256,9 +251,7 @@ def IdeaDensity(inputtext, rnge=0):
 				continue			
 		else:
 			continue
-	#print('Propositions -aux: ',taggedtext)
 	AUXcount = propcount-len(taggedtext)
-	#print('#removed other AUX-verbs: ', AUXcount)
 	propcount= len(taggedtext)
 
 	
@@ -293,7 +286,6 @@ def IdeaDensity(inputtext, rnge=0):
 		else:
 			continue
 	TOcount = propcount-len(taggedtext)
-	#print("#removed TO's: ", TOcount)
 	propcount= len(taggedtext)
 
 	
@@ -329,7 +321,6 @@ def IdeaDensity(inputtext, rnge=0):
 					else:
 						continue		
 	BECOPcount = propcount-len(taggedtext)
-	#print('#removed COPULA-verbs: ', BECOPcount)
 	propcount= len(taggedtext)
 
 	#Removing secondary copula, followed by AdjP
@@ -394,10 +385,7 @@ def IdeaDensity(inputtext, rnge=0):
 				continue
 		else: 
 			continue
-
-	#print('Propositions -COP: ',taggedtext)
 	COPcount = propcount-len(taggedtext)
-	#print('#removed COPULA-verbs: ', COPcount)
 	propcount= len(taggedtext)
 
 	#Removing non-propositional tags + some determiners
@@ -424,7 +412,6 @@ def IdeaDensity(inputtext, rnge=0):
 		else:
 			continue
 	TAGcount = propcount-len(taggedtext)
-	#print('#removed non-prop tags: ', TAGcount)
 	propcount= len(taggedtext)
 
 	RemoveDT= ('a','A','an','An','the','The')
@@ -438,13 +425,8 @@ def IdeaDensity(inputtext, rnge=0):
 			taggedtext.remove(word)
 		else:
 			continue
-
-
-	#print('Propositions -tags etc. : ',taggedtext)
 	DTcount = propcount-len(taggedtext)
-	#print('#removed DT(a,an,the): ', DTcount)
 	propcount= len(taggedtext)
-	#print('Propositions : ',taggedtext)
 
 	#5. Measuring PD (#prop./#words)
 	propdensity= propcount/wordcount
