@@ -188,7 +188,7 @@ def IdeaDensity(inputtext):
 	for word in taggedtext:
 		if word in AuxHAVE:
 			countHave1+=1
-	for i in range(1,(len(taggedtext))-countHave1):
+	for i in range(1,(len(taggedtext)-countHave1)):
 		if taggedtext[i] in FollowingAux: 
 			if taggedtext[i-1] in AuxHAVE:
 				taggedtext[i-1]='remove it'
@@ -220,7 +220,7 @@ def IdeaDensity(inputtext):
 	for word in taggedtext:
 		if word in AuxBE:
 			countBe1+=1
-	for i in range(1,(len(taggedtext))-countBe1):
+	for i in range(1,(len(taggedtext)-(int((countBe1)/2)))):
 		if taggedtext[i-1] in AuxBE:
 			for word in taggedtext[i]:
 				if word in FolBE:
@@ -340,7 +340,7 @@ def IdeaDensity(inputtext):
 	for word in taggedtext:
 		if word in PrimeCopula:
 			countBe4+=1
-	for i in range(1,(len(taggedtext)-countBe4)):
+	for i in range(1,(len(taggedtext)-int(countBe4/2))):
 		if taggedtext[i-1] in PrimeCopula:
 			if not str(taggedtext[i]).endswith("'DT')"):
 				for word in taggedtext[i]:
@@ -351,7 +351,7 @@ def IdeaDensity(inputtext):
 						continue
 		else:
 			continue
-	for i in range(1,(len(taggedtext)-countBe4)): 
+	for i in range(1,(len(taggedtext)-int(countBe4/2))): 
 		if taggedtext[i-1] in PrimeCopula:
 			if not str(taggedtext[i]).endswith("'DT')"):
 				for word in taggedtext[i]:
@@ -517,4 +517,4 @@ def IdeaDensity(inputtext):
 	propoutput.close()
 
 
-IdeaDensity('Bloomberg.txt')
+IdeaDensity('testtext.txt')

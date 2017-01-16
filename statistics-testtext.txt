@@ -15,7 +15,7 @@ Number of removed items (Absolute number, Relative number):
 	>> Non-propositional tags:	116		0.31608
 	>> "a,an,the"-determiners:	14		0.03815
 ----------------------------------------------------------------------
-Date of analysis:	2017-01-16 20:24
+Date of analysis:	2017-01-16 22:17
 
 original text:			Need she really say that? I need you to do that. Needn't he go home? Who does that? Where does this man come from? Why did you tell her that? I did that for you. Did you? Did you tell her? Did you really tell her? Did I do something wrong? Sean is a teetotaller. The last song sounded bloody great. She is in good health. The concert is outside. I am happy. Their counter argument proved horribly wrong. Here Emerson appears greater than Voltaire or Rousseau. The goddess Pele was growing angry. They all looked weird. Enveloppe gum always tastes horrible. At last the eldest fell ill. My skin feels smooth and looks great. Do you need some extra pocket money? Your car needs a check-up. She need have no fear in Harlem. He needs to work late on Fridays. All you need learn is phonetics. He doesn't need to go home before midnight. He needn't go home. Does she need to diet throughout the year? She needn't have dieted so strictly.
 I am able to do this.
