@@ -1,4 +1,4 @@
-Date of analysis:	2017-01-16 16:17
+Date of analysis:	2017-01-16 21:05
 
 Original text:
 	For much of his second term, Barack Obama has been incubating a presidential side project, courting civic-minded entrepreneurs and engineers from Silicon Valley and elsewhere to lend their talents to the federal government—which, despite spending 86 billion a year on information technology, often can't deliver seemingly basic services. In 2012, he established the Presidential Innovation Fellowship, which pairs private-sector innovators with public officials in hopes of bringing Silicon Valley's fast, flexible problem-solving style to Washington. Then, in 2014, after the embarrassing failed launch of healthcare.gov, he created the United States Digital Service, which sends techies to help other government agencies, as well as a skunkworks called 18F.
