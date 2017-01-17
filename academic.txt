@@ -30,7 +30,7 @@ linguistic abilities of a large group of nuns by analysing autobiographical lett
 upon entry to the convent (Kemper, Greiner, et al., 2001; Kemper, Thomson, & Marquis, 2001;
 Mitzner & Kemper, 2003). The written language was analysed for both grammatical complexity
 and the relative number of ideas or propositions contained in the texts (as measured by
-Propositional Idea Density (PD) – see below for discussion). Overall, their findings indicated that
+Propositional Idea Density (PD) - see below for discussion). Overall, their findings indicated that
 measures of informativeness, as measured by PD, were a sensitive predictor of language decline
 with age and also a sensitive predictor of AD (as later confirmed by autopsy in the Nun Study
 participants). Needless to say, the relationship between language, cognition and cognitive health is
@@ -70,7 +70,7 @@ sample (Riley et al., 2005). For example, in the Nun Study PD scores in the lowe
 sample were described as 'lower' and those in the top third as 'higher'. Ferguson, Spencer,
 Craig, and Colyvas (2014) recently contributed to knowledge of the range of PD for healthy
 women across the adult lifespan from three age cohorts born between 1973-78, 1946-51 and
-1921–26 over a 16-year-period. This study analysed free text responses from 19 512 respondents
+1921-26 over a 16-year-period. This study analysed free text responses from 19 512 respondents
 to the Australian Longitudinal Study on Women's Health. In total 37 705 responses were analysed
 for PD using freely downloadable software, the Computerised Propositional Idea Density Rater
 (CPIDR 3) (Brown, Snodgrass, & Covington, 2007). PD was found to be relatively stable for the
@@ -99,7 +99,7 @@ reported by Ferguson et al. (2014) and also for the Nun Study with means of 0.55
 (5.5 per 10 words) (Kemper, Greiner, et al., 2001; Mitzner & Kemper, 2003).
 1The convention of reporting PD scores per 10 words has traditionally been used, however, CPIDR uses the format of reporting PD per word.
 For ease of comparison with previous studies, we have chosen to report in both formats, PD per word and PD per 10 words.
-Propositional idea density in older men’s written language 87
+Propositional idea density in older men's written language 87
 Chand et al. (2012) investigated PD using manual analysis in an ethnically and gender diverse
 population of 87 older adults, 48% of whom were male. Thirty eight participants had no cognitive
 impairment, 35 had mild cognitive impairment and 14 had a diagnosis of dementia syndrome. The

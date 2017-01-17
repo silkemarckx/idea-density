@@ -177,7 +177,6 @@ def IdeaDensity(inputtext):
 	DOcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
-
 	AuxHAVE= (('have', 'VBP'),('Have', 'VBP'),('has', 'VBZ'),('Has', 'VBZ'),("'ve", 'VBP'),
 		('had', 'VBD'),('Had', 'VBD'),('have', 'VB'))
 	FolHAVE=('VBN','VBD') #VBD: test-run on larger text mistakingly tagged VBN as VBD. Won't do any harm to add this to the removal-list
@@ -201,7 +200,6 @@ def IdeaDensity(inputtext):
 					taggedtext.remove(taggedtext[i-1])
 	HAVEcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
-
 
 	AuxBE= (('am', 'VBP'),('Am', 'VBP'),("'m", 'VBP'),('are', 'VBP'),('Are', 'VBP'),("'re", 'VBP'),
 		('is','VBZ'),('Is','VBZ'),("'s",'VBZ'),('was','VBD'),('Was','VBD'),('were','VBD'),
@@ -241,7 +239,6 @@ def IdeaDensity(inputtext):
 						taggedtext.remove(taggedtext[i-1])
 	BEcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
-
 
 	AuxGET = (('get', 'VBP'), ('gets', 'VBZ'),('got', 'VBD'))
 	countGet1=1
@@ -305,7 +302,6 @@ def IdeaDensity(inputtext):
 	AUXcount = GETcount+Xtocount+NeedTocount
 	propcount= len(taggedtext)
 
-	
 	#Removing 'To' in 'to+verb'
 	#Problem: Only removes all 'To'(+verb) after second identical loop. (=Overall problem)
 	FolTO = ('VB','VBG','VBN') #When aux have&be are removed-->> (VBG: have to be ..ing--> to ...ing) (VBN: ought to have ..ed --> to ..ed)
@@ -331,7 +327,6 @@ def IdeaDensity(inputtext):
 	TOcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
-	
 	#Removing prime copula 'to be', followed by AdjP
 	PrimeCopula = (('be','VB'),('am','VBP'), ('Am', 'VBP'),("'m",'VBP'),('are','VBP'),('Are', 'VBP'),("'re",'VBP'),
 		('is','VBZ'),('Is', 'VBZ'),("'s",'VBZ'),('was','VBD'),('Was', 'VBD'),('were','VBD'),('Were', 'VBD'),
@@ -376,7 +371,6 @@ def IdeaDensity(inputtext):
 									if word in AdjP:
 										taggedtext[i-1]="Is she not very happy?"
 										taggedtext.remove(taggedtext[i-1])
-
 	BECOPcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
@@ -493,6 +487,8 @@ def IdeaDensity(inputtext):
 
 	#5. Measuring PD (#prop./#words)
 	propdensity= propcount/wordcount
+
+	#6. Output
 	print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>STATISTICS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<',
 		'\n\nPropositional Idea Density:\t\t\t',propdensity,
 		'\n----------------------------------------------------------------------',
@@ -534,4 +530,4 @@ def IdeaDensity(inputtext):
 	propoutput.close()
 
 
-IdeaDensity('wikilow.txt')
+IdeaDensity('Obama.txt')

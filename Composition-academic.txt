@@ -1,0 +1,31 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>Compositional Analysis<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+Propositional Idea Density: 		0.5435588507877664
+----------------------------------------------------------------------
+Total wordcount: 			2158 items
+Number of removed items (Absolute number, Relative number):
+ Modals: 			
+	>> Principal Modals: 		8		0.00371
+	>> Modal verb "have (got) to":	0		0.0
+	>> Modal verb "be to": 		0		0.0
+	>> Modal verb "need": 		0		0.0
+ Auxiliaries:		
+	>> "to do":			0		0.0
+	>> "to have":			23		0.01066
+	>> "to be": 			36		0.01668
+	>> "to get": 			0		0.0
+	>> "Used to/Able to/Going to":	1		0.00046
+	>> Auxiliary "need to": 	1		0.00046
+ "To" followed by verb:			21		0.00973
+ Copulas		
+	>> Prime copula "to be":	17		0.00788
+	>> Secondary copulas:		0		0.0
+ Non-propositional tags:		
+	>> (Proper)(Pers. Pro-)noun: 	730		0.33828
+	>> Particle: 			0		0.0
+	>> Existential "There": 	4		0.00185
+	>> Foreign Word: 		9		0.00417
+	>> List item marker: 		0		0.0
+ "a,an,the"-determiners:		135		0.06256
+----------------------------------------------------------------------
+Date of analysis:	2017-01-17 20:40

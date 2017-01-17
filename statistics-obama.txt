@@ -1,12 +1,12 @@
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>STATISTICS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-Propositional Idea Density: 		0.4918032786885246
+Propositional Idea Density: 		0.5
 ----------------------------------------------------------------------
 Total wordcount: 			122 items
 Number of removed items (Absolute number, Relative number):
 	>> Modals: 			2		0.01639
 	>> Auxiliary "to do":		1		0.0082
-	>> Auxiliary "to have":		4		0.03279
+	>> Auxiliary "to have":		3		0.02459
 	>> Auxiliary "to be": 		4		0.03279
 	>> Remaining auxiliaries: 	0		0.0
 	>> "TO" followed by a verb:	5		0.04098
@@ -15,7 +15,7 @@ Number of removed items (Absolute number, Relative number):
 	>> Non-propositional tags:	40		0.32787
 	>> "a,an,the"-determiners:	6		0.04918
 ----------------------------------------------------------------------
-Date of analysis:	2017-01-16 21:05
+Date of analysis:	2017-01-17 20:41
 
 original text:			As for me and Michelle, we've decided to stay in D.C. for a couple more years.  Thank you. This way, our youngest daughter can finish up high school, Michelle can stay closer to her plot of carrots.  She's already making plans to see them every day. Take a look.
 But our decision has actually presented a bit of a dilemma because, traditionally, Presidents don't stick around after they're done. And it's something that I've been brooding about a little bit. Take a look.
@@ -24,4 +24,4 @@ I am still waiting for all of you to respond to my invitation to connect on Link
 
 Original tagged text: 			[('As', 'IN'), ('for', 'IN'), ('me', 'PRP'), ('and', 'CC'), ('Michelle', 'NNP'), (',', ','), ('we', 'PRP'), ("'ve", 'VBP'), ('decided', 'VBN'), ('to', 'TO'), ('stay', 'VB'), ('in', 'IN'), ('D.C.', 'NNP'), ('for', 'IN'), ('a', 'DT'), ('couple', 'NN'), ('more', 'JJR'), ('years', 'NNS'), ('.', '.'), ('Thank', 'NNP'), ('you', 'PRP'), ('.', '.'), ('This', 'DT'), ('way', 'NN'), (',', ','), ('our', 'PRP$'), ('youngest', 'JJS'), ('daughter', 'NN'), ('can', 'MD'), ('finish', 'VB'), ('up', 'RP'), ('high', 'JJ'), ('school', 'NN'), (',', ','), ('Michelle', 'NNP'), ('can', 'MD'), ('stay', 'VB'), ('closer', 'RB'), ('to', 'TO'), ('her', 'PRP$'), ('plot', 'NN'), ('of', 'IN'), ('carrots', 'NNS'), ('.', '.'), ('She', 'PRP'), ("'s", 'VBZ'), ('already', 'RB'), ('making', 'VBG'), ('plans', 'NNS'), ('to', 'TO'), ('see', 'VB'), ('them', 'PRP'), ('every', 'DT'), ('day', 'NN'), ('.', '.'), ('Take', 'VB'), ('a', 'DT'), ('look', 'NN'), ('.', '.'), ('But', 'CC'), ('our', 'PRP$'), ('decision', 'NN'), ('has', 'VBZ'), ('actually', 'RB'), ('presented', 'VBN'), ('a', 'DT'), ('bit', 'NN'), ('of', 'IN'), ('a', 'DT'), ('dilemma', 'NN'), ('because', 'IN'), (',', ','), ('traditionally', 'RB'), (',', ','), ('Presidents', 'NNS'), ('do', 'VBP'), ("n't", 'RB'), ('stick', 'VB'), ('around', 'RP'), ('after', 'IN'), ('they', 'PRP'), ("'re", 'VBP'), ('done', 'VBN'), ('.', '.'), ('And', 'CC'), ('it', 'PRP'), ("'s", 'VBZ'), ('something', 'NN'), ('that', 'IN'), ('I', 'PRP'), ("'ve", 'VBP'), ('been', 'VBN'), ('brooding', 'VBG'), ('about', 'IN'), ('a', 'DT'), ('little', 'JJ'), ('bit', 'NN'), ('.', '.'), ('Take', 'VB'), ('a', 'DT'), ('look', 'NN'), ('.', '.'), ('I', 'PRP'), ('am', 'VBP'), ('still', 'RB'), ('waiting', 'VBG'), ('for', 'IN'), ('all', 'DT'), ('of', 'IN'), ('you', 'PRP'), ('to', 'TO'), ('respond', 'VB'), ('to', 'TO'), ('my', 'PRP$'), ('invitation', 'NN'), ('to', 'TO'), ('connect', 'VB'), ('on', 'IN'), ('LinkedIn', 'NNP'), ('.', '.'), ('But', 'CC'), ('I', 'PRP'), ('know', 'VBP'), ('you', 'PRP'), ('have', 'VBP'), ('jobs', 'NNS'), ('to', 'TO'), ('do', 'VB'), (',', ','), ('which', 'WDT'), ('is', 'VBZ'), ('what', 'WP'), ('really', 'RB'), ('brings', 'VBZ'), ('us', 'PRP'), ('here', 'RB'), ('tonight', 'NN'), ('.', '.')]
 
-Tagged propositions: 			[('As', 'IN'), ('for', 'IN'), ('and', 'CC'), ('decided', 'VBN'), ('stay', 'VB'), ('in', 'IN'), ('for', 'IN'), ('more', 'JJR'), ('This', 'DT'), ('our', 'PRP$'), ('youngest', 'JJS'), ('finish', 'VB'), ('high', 'JJ'), ('stay', 'VB'), ('closer', 'RB'), ('to', 'TO'), ('her', 'PRP$'), ('of', 'IN'), ('already', 'RB'), ('making', 'VBG'), ('see', 'VB'), ('every', 'DT'), ('Take', 'VB'), ('But', 'CC'), ('our', 'PRP$'), ('actually', 'RB'), ('presented', 'VBN'), ('of', 'IN'), ('because', 'IN'), ('traditionally', 'RB'), ("n't", 'RB'), ('stick', 'VB'), ('after', 'IN'), ('done', 'VBN'), ('And', 'CC'), ("'s", 'VBZ'), ('that', 'IN'), ('brooding', 'VBG'), ('about', 'IN'), ('little', 'JJ'), ('Take', 'VB'), ('still', 'RB'), ('waiting', 'VBG'), ('for', 'IN'), ('all', 'DT'), ('of', 'IN'), ('respond', 'VB'), ('to', 'TO'), ('my', 'PRP$'), ('connect', 'VB'), ('on', 'IN'), ('But', 'CC'), ('know', 'VBP'), ('do', 'VB'), ('which', 'WDT'), ('is', 'VBZ'), ('what', 'WP'), ('really', 'RB'), ('brings', 'VBZ'), ('here', 'RB')]
+Tagged propositions: 			[('As', 'IN'), ('for', 'IN'), ('and', 'CC'), ('decided', 'VBN'), ('stay', 'VB'), ('in', 'IN'), ('for', 'IN'), ('more', 'JJR'), ('This', 'DT'), ('our', 'PRP$'), ('youngest', 'JJS'), ('finish', 'VB'), ('high', 'JJ'), ('stay', 'VB'), ('closer', 'RB'), ('to', 'TO'), ('her', 'PRP$'), ('of', 'IN'), ('already', 'RB'), ('making', 'VBG'), ('see', 'VB'), ('every', 'DT'), ('Take', 'VB'), ('But', 'CC'), ('our', 'PRP$'), ('actually', 'RB'), ('presented', 'VBN'), ('of', 'IN'), ('because', 'IN'), ('traditionally', 'RB'), ("n't", 'RB'), ('stick', 'VB'), ('after', 'IN'), ('done', 'VBN'), ('And', 'CC'), ("'s", 'VBZ'), ('that', 'IN'), ('brooding', 'VBG'), ('about', 'IN'), ('little', 'JJ'), ('Take', 'VB'), ('still', 'RB'), ('waiting', 'VBG'), ('for', 'IN'), ('all', 'DT'), ('of', 'IN'), ('respond', 'VB'), ('to', 'TO'), ('my', 'PRP$'), ('connect', 'VB'), ('on', 'IN'), ('But', 'CC'), ('know', 'VBP'), ('have', 'VBP'), ('do', 'VB'), ('which', 'WDT'), ('is', 'VBZ'), ('what', 'WP'), ('really', 'RB'), ('brings', 'VBZ'), ('here', 'RB')]
