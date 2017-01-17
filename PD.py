@@ -15,24 +15,23 @@ def IdeaDensity(inputtext):
 	#Deleting punctuation
 	#Problem: Only removes all punctuation after a second& even third identical loop. 
 	#=> OVERALL PROBLEM: 2 items with same tag: No removal of second item!!
-	Punctuation = (',','.','!',';','?',':',"'","''",'``','(',')')
+	Punctuation = (',','.','!',';','?',':',"'","''",'``','(',')','[',']')
 	for word in taggedtext:
-		if word[1] in Punctuation:
+		if (word[1] in Punctuation) or (word[0] in Punctuation):
 			taggedtext.remove(word)
 		else:
 			continue
 	for word in taggedtext:
-		if word[1] in Punctuation:
+		if (word[1] in Punctuation) or (word[0] in Punctuation):
 			taggedtext.remove(word)
 		else:
 			continue
 	for word in taggedtext:
-		if word[1] in Punctuation:
+		if (word[1] in Punctuation) or (word[0] in Punctuation):
 			taggedtext.remove(word)
 		else:
 			continue
 	wordcount = len(taggedtext)
-
 
 	#3. Proposition count & Adjustment Rules
 	"""= verbs
@@ -47,8 +46,6 @@ def IdeaDensity(inputtext):
 
 	#Adjustment rules:
 	"""'to'+verb = 1 prop
-	'a,an,the' != prop
-	models != prop, UNLESS negative (ending in "n't")
 	COPULA + NP ==> copula = prop 
 	COPULA + AdjP ==> copula(linking verb) != prop  (AdjP=prop!)"""
 	propcount= len(taggedtext)
@@ -64,8 +61,7 @@ def IdeaDensity(inputtext):
 	for word in taggedtext:
 		if word in Modals:
 			taggedtext.remove(word)
-		else:
-			continue
+
 	#Removing modal 'got'
 	countGot=1
 	for word in taggedtext:
@@ -76,10 +72,6 @@ def IdeaDensity(inputtext):
 			if taggedtext[i-1] == ('got', 'VBN'):
 				taggedtext[i-1]='remove modal'
 				taggedtext.remove(taggedtext[i-1])
-			else:
-				continue
-		else:
-			continue
 
 	ModalNeed= (('need', 'VB'),('Need', 'VB'),('need', 'VBP'),('Need', 'VBP'), ('need', 'MD'),('needed', 'VBD'),('Needed', 'VBD'))
 	Negative= (("n't", 'RB'),('not', 'RB'))
@@ -99,12 +91,6 @@ def IdeaDensity(inputtext):
 				elif str(taggedtext[i+1]).endswith("'VB')"):
 					taggedtext[i-1]="I need to rename this as well, in order to avoid removing all 'need'"
 					taggedtext.remove(taggedtext[i-1])					
-				else:
-					continue
-			else:
-				continue
-		else:
-			continue
 	countNeed2=1
 	for word in taggedtext:
 		if word in ModalNeed:
@@ -119,12 +105,6 @@ def IdeaDensity(inputtext):
 					if str(taggedtext[i+1]).endswith("'RB')"):
 						taggedtext[i-1]='Remove need again'
 						taggedtext.remove(taggedtext[i-1])
-				else:
-					continue
-			else:
-				continue
-		else:
-			continue
 	modalcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
@@ -143,12 +123,6 @@ def IdeaDensity(inputtext):
 				if taggedtext[i-1] in AuxDO:
 					taggedtext[i-1]= 'delete it'
 					taggedtext.remove(taggedtext[i-1])
-				else:
-					continue
-			else:
-				continue
-		else:
-			continue
 	countDo2=1
 	for word in taggedtext:
 		if word in AuxDO:
@@ -160,10 +134,6 @@ def IdeaDensity(inputtext):
 					if word == ('VB'):
 						taggedtext[i-1]='delete do'
 						taggedtext.remove(taggedtext[i-1])
-					else:
-						continue
-			else:
-				continue
 	countDo3=1
 	for word in taggedtext:
 		if word in AuxDO:
@@ -173,10 +143,6 @@ def IdeaDensity(inputtext):
 			if str(taggedtext[i-1]).endswith("'WRB')"):
 				taggedtext[i]='do not remove the wrong word!'
 				taggedtext.remove(taggedtext[i])
-			else:
-				continue
-		else:
-			continue
 	DOcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
@@ -198,16 +164,10 @@ def IdeaDensity(inputtext):
 				if word in FolHAVE:
 					taggedtext[i-1]='remove this as well'
 					taggedtext.remove(taggedtext[i-1])
-				else:
-					continue
 			for word in taggedtext[i+1]:
 				if word in FolHAVE:
 					taggedtext[i-1]='remove'
 					taggedtext.remove(taggedtext[i-1])
-				else:
-					continue
-		else:
-			continue
 	HAVEcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
@@ -226,8 +186,6 @@ def IdeaDensity(inputtext):
 				if word in FolBE:
 					taggedtext[i-1]='remove be'
 					taggedtext.remove(taggedtext[i-1])
-				else:
-					continue
 	countBe2=1
 	for word in taggedtext:
 		if word in AuxBE:
@@ -239,8 +197,6 @@ def IdeaDensity(inputtext):
 					if word in FolBE:
 						taggedtext[i-1]='remove be again'
 						taggedtext.remove(taggedtext[i-1])
-					else:
-						continue
 	countBe3=1
 	for word in taggedtext:
 		if word in AuxBE:
@@ -252,10 +208,6 @@ def IdeaDensity(inputtext):
 					if word in FolBE:
 						taggedtext[i-1]='remove '		
 						taggedtext.remove(taggedtext[i-1])
-					else:
-						continue
-		else:
-			continue
 	BEcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
@@ -284,12 +236,6 @@ def IdeaDensity(inputtext):
 				if str(taggedtext[i+1]).endswith("'VB')"):
 					taggedtext[i-1]='REMOVE THIS'
 					taggedtext.remove(taggedtext[i-1])
-				else:
-					continue
-			else:
-				continue			
-		else:
-			continue
 	AUXcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
@@ -309,12 +255,6 @@ def IdeaDensity(inputtext):
 					if word in FolTO:
 						taggedtext[i-1]="I need to rename this, in order to avoid removing al TO's"
 						taggedtext.remove(taggedtext[i-1])
-					else:
-						continue
-				else:
-					continue
-		else:
-			continue
 	for i in range(1,(len(taggedtext))): #removing 'to' bij 'to+verb' 
 		if taggedtext[i-1] == ('to', 'TO'): 
 			for word in taggedtext[i]:
@@ -322,12 +262,6 @@ def IdeaDensity(inputtext):
 					if word in FolTO:
 						taggedtext[i-1]="I need to rename this, in order to avoid removing al TO's"
 						taggedtext.remove(taggedtext[i-1])
-					else:
-						continue
-				else:
-					continue
-		else:
-			continue
 	TOcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
@@ -347,10 +281,6 @@ def IdeaDensity(inputtext):
 					if word in AdjP:
 						taggedtext[i-1]="to be removed"
 						taggedtext.remove(taggedtext[i-1])
-					else:
-						continue
-		else:
-			continue
 	for i in range(1,(len(taggedtext)-int(countBe4/2))): 
 		if taggedtext[i-1] in PrimeCopula:
 			if not str(taggedtext[i]).endswith("'DT')"):
@@ -360,13 +290,7 @@ def IdeaDensity(inputtext):
 							for word in taggedtext[i+1]:
 								if word in AdjP:
 									taggedtext[i-1]="be to be removed"
-									taggedtext.remove(taggedtext[i-1])
-								else:
-									continue
-						else:
-							continue
-					else:
-						continue		
+									taggedtext.remove(taggedtext[i-1])		
 	BECOPcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
@@ -410,10 +334,6 @@ def IdeaDensity(inputtext):
 						if word in AdjP:
 							taggedtext[i-1]='remove copu'
 							taggedtext.remove(taggedtext[i-1])
-				else:
-					continue
-		else:
-			continue
 	for i in range(1,(len(taggedtext))-countCop1):
 		if taggedtext[i-1] in Copulagroup:
 			if str(taggedtext[i]).endswith("'RB')"):
@@ -422,21 +342,11 @@ def IdeaDensity(inputtext):
 						if word in AdjP:
 							taggedtext[i-1]="this is a copula"
 							taggedtext.remove(taggedtext[i-1])
-						else:
-							continue
-				else:
-					continue
-		else:
-			continue
 	for i in range(1,(len(taggedtext))-countCop1):
 		if taggedtext[i-1] in CopulaSenses:
 			if taggedtext[i] == ('like', 'IN'):
 				taggedtext[i-1]='remove copula'
 				taggedtext.remove(taggedtext[i-1])
-			else:
-				continue
-		else: 
-			continue
 	COPcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
@@ -446,23 +356,15 @@ def IdeaDensity(inputtext):
 	for word in taggedtext: #word= ('word','tag')
 		if word[1] in Removetags:
 			taggedtext.remove(word)
-		else:
-			continue
 	for word in taggedtext: 
 		if word[1] in Removetags:
 			taggedtext.remove(word)
-		else:
-			continue
 	for word in taggedtext: 
 		if word[1] in Removetags:
 			taggedtext.remove(word)
-		else:
-			continue
 	for word in taggedtext: 
 		if word[1] in Removetags:
 			taggedtext.remove(word)
-		else:
-			continue
 	TAGcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 
@@ -470,13 +372,9 @@ def IdeaDensity(inputtext):
 	for word in taggedtext: #word= ('word','tag')
 		if word[0] in RemoveDT:
 			taggedtext.remove(word)
-		else:
-			continue
 	for word in taggedtext: 
 		if word[0] in RemoveDT:
 			taggedtext.remove(word)
-		else:
-			continue
 	DTcount = propcount-len(taggedtext)
 	propcount= len(taggedtext)
 

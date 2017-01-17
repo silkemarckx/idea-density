@@ -1,0 +1,86 @@
+﻿Monetary policy is the process by which the monetary authority of a country, like the central bank or currency board, controls the supply of money, often targeting an inflation rate or interest rate to ensure price stability and general trust in the currency.
+Further goals of a monetary policy are usually to contribute to economy growth and stability, to lower unemployment, and to maintain predictable exchange rates with other currencies.
+
+Monetary economics provides insight into how to craft optimal monetary policy. Since the 1970s, monetary policy has generally been formed separately from fiscal policy, which refers to taxation, government spending, and associated borrowing.
+
+Monetary policy is referred to as either being expansionary or contractionary. Expansionary policy is when a monetary authority uses its tools to stimulate the economy. An expansionary policy increases the total supply of money in the economy more rapidly than usual. It is traditionally used to try to combat unemployment in a recession by lowering [[interest rate targeting interest rates]] in the hope that easy credit will entice businesses into expanding. Also, this increases the aggregate demand (the overall demand for all goods and services in an economy), which boosts growth as measured by gross domestic product (GDP). Expansionary monetary policy usually diminishes the value of the currency, thereby decreasing the exchange rate.
+
+The opposite of expansionary monetary policy is contractionary monetary policy, which slows the rate of growth in the money supply or even shrinks it. This slows economic growth to prevent inflation. Contractionary monetary policy can lead to increased unemployment and depressed borrowing and spending by consumers and businesses, which can eventually result in an economic recession; it should hence be well managed and conducted with care.
+
+==History==
+Monetary policy is associated with interest rates and availability of credit. Instruments of monetary policy have included short-term interest rates and bank reserves through the monetary base.
+For many centuries there were only two forms of monetary policy: (i) Decisions about coinage; (ii) Decisions to print paper money to create credit. Interest rates, while now thought of as part of monetary authority, were not generally coordinated with the other forms of monetary policy during this time. Monetary policy was seen as an executive decision, and was generally in the hands of the authority with seigniorage, or the power to coin. With the advent of larger trading networks came the ability to set the price between gold and silver, and the price of the local currency to foreign currencies. This official price could be enforced by law, even if it varied from the market price.
+
+Paper money called "jiaozi" originated from promissory notes in 7th century China. Jiaozi did not replace metallic currency, and were used alongside the copper coins. The successive Yuan Dynasty was the first government to use paper currency as the predominant circulating medium. In the later course of the dynasty, facing massive shortages of specie to fund war and their rule in China, they began printing paper money without restrictions, resulting in hyperinflation.
+
+With the creation of the Bank of England in 1694, which acquired the responsibility to print notes and back them with gold, the idea of monetary policy as independent of executive action began to be established. The goal of monetary policy was to maintain the value of the coinage, print notes which would trade at par to specie, and prevent coins from leaving circulation. The establishment of central banks by industrializing nations was associated then with the desire to maintain the nation's peg to the gold standard, and to trade in a narrow band with other gold-backed currencies. To accomplish this end, central banks as part of the gold standard began setting the interest rates that they charged, both their own borrowers, and other banks who required liquidity. The maintenance of a gold standard required almost monthly adjustments of interest rates.
+The gold standard is a system under which the price of the national currency is measured in units of gold bars and is kept constant by the government's promise to buy or sell gold at a fixed price in terms of the base currency. The gold standard might be regarded as a special case of "fixed exchange rate" policy, or as a special type of commodity price level targeting.
+Nowadays this type of monetary policy is no longer used by any country.
+
+During the period 1870-1920, the industrialized nations set up central banking systems, with one of the last being the Federal Reserve in 1913. By this point the role of the central bank as the "lender of last resort" was understood. It was also increasingly understood that interest rates had an effect on the entire economy, in no small part because of the marginal revolution in economics, which demonstrated how people would change a decision based on a change in the economic trade-offs.
+
+Monetarist economists long contended that the money-supply growth could affect the macroeconomy. These included Milton Friedman who early in his career advocated that government budget deficits during recessions be financed in equal amount by money creation to help to stimulate aggregate demand for output. Later he advocated simply increasing the monetary supply at a low, constant rate, as the best way of maintaining low inflation and stable output growth. However, when U.S. Federal Reserve Chairman Paul Volcker tried this policy, starting in October 1979, it was found to be impractical, because of the highly unstable relationship between monetary aggregates and other macroeconomic variables. Even Milton Friedman later acknowledged that direct money supply targeting was less successful than he had hoped.
+
+Therefore, monetary decisions today take into account a wider range of factors, such as:
+ short-term interest rates;
+ long-term interest rates;
+ velocity of money through the economy;
+ [[exchange rate]]s;
+ [[credit quality]];
+ bonds]] and [[equities]] (corporate ownership and debt);
+ government versus private sector spending/savings;
+ international [[capital flow]]s of money on large scales;
+ financial [[derivatives]] such as [[options]], swaps, futures contracts, etc.
+
+== Tools ==
+
+=== Traditional tools ===
+The central bank influences interest rates by expanding or contracting the monetary base, which consists of currency in circulation and banks' reserves on deposit at the central bank. 
+Central banks have three main tools of monetary policy: open market operations, the discount rate and the reserve requirements. 
+
+The most commonly used tool by which the central bank can affect the monetary base is by [[open market operations]]. This entails managing the quantity of money in circulation through the buying and selling of various financial instruments, such as treasury bills, company bonds, or foreign currencies, in exchange for money on deposit at the central bank. Those deposits are convertible to currency, so all of these purchases or sales result in more or less base currency entering or leaving market circulation. 
+For example, if the central bank wishes to lower interest rates (executing expansionary monetary policy), it purchases government debt, thereby increasing the amount of cash in circulation or crediting [[banks' reserve accounts]]. Commercial banks then have more money to lend, so they reduce lending rates, making loans less expensive. Cheaper credit card interest rates boost consumer spending. Additionally, when business loans are more affordable, companies can expand to keep up with consumer demand. They ultimately hire more workers, whose incomes rise, which in its turn also increases the demand. This tool is usually enough to stimulate demand and drive economic growth to a healthy rate. 
+Usually, the short-term goal of open market operations is to achieve a specific short-term interest rate target. In other instances, monetary policy might instead entail the targeting of a specific exchange rate relative to some foreign currency or else relative to gold. For example, in the case of the USA the [[Federal Reserve]] targets the [[federal funds rate]], the rate at which member banks lend to one another overnight; however, the monetary policy of China is to target the exchange rate between the Chinese renminbi and a basket of foreign currencies.
+
+If the open market operations do not lead to the desired effects, a second tool can be used: the central bank can lower the interest rate it charges on discounts or overdrafts (loans from the central bank to commercial banks, see [[discount window]]). If the interest rate on such transactions is sufficiently low, commercial banks can borrow from the central bank to meet reserve requirements and use the additional liquidity to expand their balance sheets, increasing the credit available to the economy. 
+
+A third alternative is to change the [[reserve requirements]]. The reserve requirement refers to the proportion of total assets that banks must keep on hand overnight, either in its vaults or at the central bank. Banks only maintain a small portion of their assets as cash available for immediate withdrawal; the rest is invested in illiquid assets like mortgages and loans. Lowering the reserve requirement frees up funds for banks to increase loans or buy other profitable assets. This is expansionary because it creates credit. However, even though this tool immediately increases liquidity, central banks rarely change the reserve requirement because it is expensive and requires a lot of new policies and procedures, disrupting member banks. The use of open market operations is therefore preferred. 
+
+===Other: Unconventional monetary policy at the zero bound===
+Other forms of monetary policy, particularly used when interest rates are at or near 0% and there are concerns about deflation or deflation is occurring, are referred to as '''unconventional monetary policy'''. These include [[credit easing]], [[quantitative easing]], [[forward guidance]], and [[signaling]]. In credit easing, a central bank purchases private sector assets to improve liquidity and improve access to credit. Signaling can be used to lower market expectations for lower interest rates in the future. For example, during the credit crisis of 2008, the US Federal Reserve indicated rates would be low for an "extended period", and the [[Bank of Canada]] made a "conditional commitment" to keep rates at the lower bound of 25 basis points (0.25%) until the end of the second quarter of 2010.
+
+Further heterodox monetary policy proposals include the idea of [[helicopter money]] whereby central banks would create money without assets as counterpart in their balance sheet. The money created could be distributed directly to the population as a citizen's dividend. This option has been increasingly discussed since March 2016 after the ECB's president [[Mario Draghi]] said he found the concept "very interesting".
+
+==Nominal anchors==
+A nominal anchor for monetary policy is a single variable or device which the central bank uses to pin down expectations of private agents about the nominal price level or its path or about what the central bank might do with respect to achieving that path. Monetary regimes combine long-run nominal anchoring with flexibility in the short run. Nominal variables used as anchors primarily include exchange rate targets, money supply targets, and inflation targets with interest rate policy.
+
+===Types===
+In practice, to implement any type of monetary policy the main tool used is modifying the amount of [[base money]] in circulation. The monetary authority does this by buying or selling financial assets (usually government obligations). These [[open market operations]] change either the amount of money or its liquidity (if less liquid forms of money are bought or sold). The [[multiplier effect]] of [[fractional reserve banking]] amplifies the effects of these actions.
+
+Constant market transactions by the monetary authority modify the supply of currency and this impacts other market variables such as [[short-term interest rates]] and the exchange rate.
+
+The distinction between the various types of monetary policy lies primarily with the set of instruments and target variables that are used by the monetary authority to achieve their goals.
+
+
+The different types of policy are also called '''monetary regimes''', in parallel to [[exchange-rate regime]]s. A fixed exchange rate is also an exchange-rate regime; The Gold standard results in a relatively fixed regime towards the currency of other countries on the gold standard and a floating regime towards those that are not. Targeting inflation, the price level or other monetary aggregates implies floating exchange rate unless the management of the relevant foreign currencies is tracking exactly the same variables (such as a harmonized consumer price index).
+
+In economics, an expansionary fiscal policy includes higher spending and tax cuts, that encourage economic growth. In turn, an expansionary monetary policy is one that seeks to increase the size of the [[money supply]]. As usual, inciting of money supply is aimed at lowering the interest rates on purpose to achieve economic growth by increase of economic activity. Conversely, contractionary monetary policy seeks to reduce the size of the [[money supply]]. In most nations, monetary policy is controlled by either a [[central bank]] or a [[finance ministry]]. [[Neoclassical]] and [[Keynesian economics]] significantly differ on the effects and effectiveness of monetary policy on influencing the '''real''' economy; there is no clear consensus on how monetary policy affects real economic variables (aggregate output or income, employment). Both economic schools accept that monetary policy affects monetary variables (price levels, interest rates).
+
+====inflation and interest rate targets ====
+
+Under this policy approach the target is to keep [[inflation]], under a particular definition such as [[Consumer Price Index]], within a desired range.
+
+The inflation target is achieved through periodic adjustments to the Central Bank [[interest rate]] target. The interest rate used is generally the [[overnight rate]] at which banks lend to each other overnight for cash flow purposes. Depending on the country this particular interest rate might be called the cash rate or something similar.
+
+As the Fisher Effect model explains, the equation linking inflation with interest rates (both foreign and abroad) is the following:
+
+
+Where pi is the inflation at home, i is the home interest rate set by the central bank, and r is the real world interest rate. Using i as an anchor, central banks can influence pi. However, a necessary assumption for this equation to hold, is that the world real interest rate is constant. 
+Central banks can choose to maintain a fixed interest rates at all times, or to keep a constant interest rate until the real world interest rate changes. The duration of this policy varies, because of the simplicity associated with changing the nominal interest rate.
+
+The interest rate target is maintained for a specific duration using open market operations. Typically the duration that the interest rate target is kept constant will vary between months and years. This interest rate target is usually reviewed on a monthly or quarterly basis by a policy committee.
+
+Changes to the interest rate target are made in response to various market indicators in an attempt to forecast economic trends and in so doing keep the market on track towards achieving the defined inflation target. For example, one simple method of inflation targeting called the [[Taylor rule]] adjusts the interest rate in response to changes in the inflation rate and the [[output gap]]. The rule was proposed by [[John B. Taylor]] of [[Stanford University]].
+
+The inflation targeting approach to monetary policy approach was pioneered in New Zealand. It has been used in [[Australia]], [[Brazil]], [[Canada]], [[Chile]], [[Colombia]], the [[Czech Republic]], [[Hungary]], [[New Zealand]], [[Norway]], [[Iceland]], [[India]], [[Philippines]], [[Poland]], [[Sweden]], [[South Africa]], [[Turkey]], and the [[United Kingdom]].
+
